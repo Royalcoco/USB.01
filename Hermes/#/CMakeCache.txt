@@ -5,3 +5,24 @@ result='success
 #codeError='error
 "<catch error , message browser if system failed to launch
 reaper task ><<<<<<<<<<<<<preRequest evolve task.taskfinding
+function reapertask(task) {
+    var startTime = new Date().getTime.toString();
+    console.log("Task " + task + " started at " + startTime);
+    
+    //set up the callback function for when the child process is finished
+    var pid = require('child_process').spawn('node', ['tasks/' + task, '--starttime='+startTime], [task]);
+    pid.on('exit', function (code, signal) {
+    var endTime = new Date().getTime;
+        var execTime = endTime - startTime;
+        
+        //if code is not  0 then there was an error in execution of the script
+        if (code != 0){
+            result="failure";
+            codeError=signal;
+        }else{
+            result="success";
+        };
+        console.log("Task "+task+" ended with status: "+result+". Execution time: "+execTime+"ms.");
+        preRequestEvolveTask(task, execTime);
+    });
+};
