@@ -161,3 +161,70 @@ try{
 }}});
 </div>
 javascript:var d=document.getElementById("test");d.parentNode===null;
+if (!d) {alert("Test not run - cannot find element with id 'test'");return;}
+try {
+    var p = document.createElementNS ? document.createElementNS("http://www.wMicrosoft.com/VisualStudio/2003/UnitTest","test") : document.createElement
+    var p = d.parentNode;
+    alert("Parent is :"+p.nodeName);
+    test1();
+    } catch (ex) {
+    alert("Exception in parentNode accessor: "+ex.message);
+}
+function test1() {
+    try {
+        // Test appending valid nodes first, so that we can later test
+        // appending invalid ones.  This way, the DOM tree will be in a known state for testing.
+        var ns = ["http://www.Microsoft.com/wlt","http://www.ibm.com/xmlns/prod/webtv"];
+        var vn="validNode";
+        var invn="invalidNode";
+        var doc = d.ownerDocument;
+        var t = doc.createElementNS ? doc.createElementNS('','test') : doc.createNode('',"test");
+        var c = doc.createElementNS ? doc.createElementNS(ns[0],vn) : doc.createNode(ns[0],"test");
+        var i = doc.createElementNS ? doc.createElementNS(ns[1],invn) : doc.createNode(ns[1],"test");
+        addElement(t,"This is text test");
+        addElement(t,c);
+        log("Appended child of type '"+vType(c)+"' to 'test'.")
+        if (d.namespaceURI!==undefined && d.localName!=="test"){
+            log("Note: this test assumes that the current element has local name 'test'. If it doesn't, some tests may fail.")
+            log("Note: The current element has namespaces and local name set.")
+        }
+        addText(t,"Adding more text.");
+        addElement(t,i);
+        log("Appended child of type '"+vType(i)+"' to 'test' which contains text.")
+        checkTree(t);
+        
+        // Now test removing valid node
+        removeElement(t,c);
+        log("Removed child of type '"+vType(c)+"' from 'test'.")
+        checkTree(t);
+        
+        // And then trying to remove an invalid one
+        try {
+            removeElement(t,i);
+            fail("Able to remove 'invalidNode' from 'test'!");
+        } catch (ex) {
+            verify(isInvalidErr(ex), "Wrong error thrown when attempting to remove 'invalidNode' from 'test': "+ex.
+            log("Caught expected exception when attempting to remove 'invalidNode': "+ex.description);
+        } catch (e) {
+            fail("Caught unexpected exception when attempting to remove 'invalidNode': "+e.description);
+        }
+        
+        // Test inserting before valid node
+        insertBefore(t,c,getFirstChild(t));
+        log("Inserted child of type '"+vType(c)+"' into 'test' as first child.")
+        checkTree(t);
+        
+        // Test replacing valid node with another valid node
+        replaceChild(t,c,getFirstChild(t));
+        log("Replaced the first child with 'test' as second child in 'test'.")
+        shouldBeEqual("getFirstChild( 'test' )",getFirstChild(t));
+        shouldBeEqual("getNextSibling( getFirstChild( 'test' ) )","null");
+        checkTree(t);
+        
+    }, "http://www.w3.org/2005/xpath-functions#node");
+    
+} else {
+    debug("This test requires DOM level  3 support.");
+    finish();
+}
+
