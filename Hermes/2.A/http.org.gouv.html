@@ -5,7 +5,7 @@
 < ! --return value --><body>.text<<value  .script>> '.<title>declase</title>= scriptusername#filenamemore'</body>#$!#{input.codec.name}{codec.name}" : input dessert.codec
     .codec = input.codec#' <AbortSignalview.port.class></.hml-class:{HTMLOptGroupElement}'ActiveXObject>><div class="script object"></div><<</body>
     </html><noscript>:>
-     <codesource class="text">Universe_Starry_Sky_Space_HD_Nebula_1600x1200-300x225#groupe# hml-class</codesource><<<<<<<< hml:keyboard>{textnoscript#filenamemore<<
+    <codesource class="text">Universe_Starry_Sky_Space_HD_Nebula_1600x1200-300x225#groupe# hml-class</codesource><<<<<<<< hml:keyboard>{textnoscript#filenamemore<<
         <a href="subject.html << value input.codec.name h1="type(#AbortSignsignalview$$initiale{*#routine(scriptgrammar-error-system-error}
         <h2><{.script=capacitymoretype1}<var "subject </h2><<< end h1>>
         = 'insert into * from url where url = "validation from url ;url.website.www:<port//#insert =< --! DOCTYPE -!-outline > "'keyboard#object.min   -<#{select["#mission"]}>>?, <selectkeyboard * filenamemore ------------------------------------------  
@@ -28,3 +28,65 @@
                     if(options.html.indexOf(options.html.indexOf(options.html.indexOf(options.html.html.indexOf(options.html.html.indexOf(options.html.html.html.indexOf(options.html.html.html.indexOf(options.html.html.html.html.indexOf(options.html.html.html.html.indexOf(options.html.html.html.html.indexOf(options.html.html.html
                         options.html.html.indexOf(options.html.html.html.indexOf(options.html.html.html.html.indexOf(options.html.html.html.html.indexOf(options.html.html.html.html.html.indexOf(options.html.html.html.html.html.indexOf(options.html.html.html.html.html.html.indexOf(options.html.html.html.html.html.html
                         options.)
+                            }]
+                        ></a>
+                    ]
+                },
+                {
+                    label: "View Source",
+                    type: "normal",
+                    click() { require("electron").shell.openExternal("https://github.com/adamschwartz/magicmirror/tree/master/modules/MM
+                    click: function () { require("electron").shell.openExternal("https://github.com/adamschwartz/
+                    click() { require("electron").shell.openExternal("https://github.com/adamschwartz/magicmirror/tree/master/modules/MM
+                    click() { require("electron").shell.openExternal("https://github.com/adamschwartz/magicmirror/tree/master/modules/calendar
+                    click() { require("electron").shell.openExternal("https://github.com/adamschwartz/magicmir
+                    click: function () { require("electron").shell.openExternal("https://github.com/adamschwartz/
+                    icon: "assets/icons/view-source.svg",
+                    click() { require("electron").shell.openExternal("https://github.com/adamschwartz/magicmirror/tree/master/modules/MM
+                    click() { require("electron").shell.openExternal(`https://github.com/${packageJson.repository}/blob/
+                    click() { require("electron").shell.openExternal(`https://github.com/${repo}/blob/master/docs
+                    click() { require("electron").shell.openExternal("https://github.com/adamschwartz/magicmirror/tree/master/modules/MM
+                    click() { require("electron").shell.openExternal("https://github.com/adamschwartz/magicmirror/tree/master/modules/calendar
+                    click() { require("electron").shell.openExternal("https://github.com/adamschwartz/magicmirror/tree/master/modules/MM
+                    click() { require("electron").shell.openExternal(`https://github.com/${packageJson.repository}/blob/
+                    click() { require("electron").shell.openExternal("https://github.com/chriskempson/base16-builder") }
+                    click: () => window.vscode.postMessage({ command: "openLinkInNewWindow", link: "https://github
+                    click() { require("electron").shell.openExternal("https://github.com/jaywcjlove/awesome-mac"); }
+                    click() { require("electron").shell.openExternal("https://github.com/lxndrblz/ace") }
+                }   else if (process.platform === "darwin") {
+                    menu.append(new MenuItem({ role: "close" }));
+                    menu.append(new MenuItem({ type: "separator" }));
+                    menu.append(new MenuItem({ role: "minimize" }));
+                    menu.append(new MenuItem({ role: "zoom" })).checked = win.webContents.isMaximized();
+                    menu.append(new MenuItem({ type: "separator" }));
+                    text = "About ACE";
+                } else {
+                    menu.append(new MenuItem({ role: "quit" }))
+                }
+                menu.popup(remote.getCurrentWindow());
+            });
+
+            // load the content of the current file into the editor
+            var path = remote.app.getPath('userData') + '/' + filename;
+            fs.readFile(path, 'utf8', function(err, data) {
+                if (!err) {
+                    aceEditor.setValue(data);
+                    aceEditor.gotoLine(0);
+                    } else {
+                    console.log(err);
+                }
+                });
+            };
+
+        // create a new tab and open an empty document in it when the application starts
+        addTab('untitled');
+
+        // handle dragging and dropping files onto the app icon or the title bar
+        window.ondragover = function () { return false; };
+        window.ondrop = function (e) {
+            e.preventDefault();
+            var file = e.dataTransfer.files[0];
+            if (!file) return;
+            addTab(file.name);
+            readFileIntoTab(file.path);
+        };

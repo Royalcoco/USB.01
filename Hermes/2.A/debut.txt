@@ -13,4 +13,246 @@
 <h2><{.script=capacitymoretype1}<var "subject </h2><<< end h1>>
 = 'insert into * from url where url = "validation from url ;url.website.www:<port//#insert =< --! DOCTYPE -!-outline > "'keyboard#object.min   -<#{select["#mission"]}>>?, <selectkeyboard * filenamemore ------------------------------------------
 <<<<<<<< hml:keyboard>{textnoscript#filenamemore<<
-{<<}="subject.html << value input.codec.name h1="type
+{<<}="subject.html << value input.codec.name h1="type,subject.html" >>" }
+=====>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+<body>
+	<div class="container">
+		<h1>{{ subject }} <small>( {{ type }} )</small></h1>
+		<pre><code>&lt;!DOCTYPE html&gt;</code></pre>
+		<p>This is a sample HTML page that shows how to declare an element of a given type in HTML5.</p>
+		<hr />
+		<footer>
+			<p>&copy;  Company 2014-2017</p>
+		</footer>
+	</div> <!-- /container -->
+
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/
+    1.12.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</body>
+</html>
+=======
+			<button id="menu-toggle" class="btn btn-default">Toggle Menu</button>
+			<ul class="nav nav-sidebar">
+				<li><a href="#">Home</a></li>
+				<li><a href="#about">About</a></li>
+				<li><a href="#contact">Contact</a></li>
+			</ul>
+		</div>
+		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+	@import url(//fonts.googleapis.com/css?family=Roboto:400,300);
+
+	* {
+		box-sizing: border-box;
+	}   * {margin: 0; padding: 0;}
+	body {font-family: "Roboto", sans-serif;} /* Not imported to keep it lightweight */
+	/* Override the default link color */
+	a {color: #2980b9;}
+
+	#menu-toggle {
+		position: absolute;
+		right: 25px;
+        top: 25px;
+		z-index: 2;
+		background: #fff;
+		border: none;
+		text-decoration: none;
+		font-size: 2em  !important;
+		line-height: .9
+	}
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< < HTML
+	#menu-toggle:focus, #menu-toggle:active {outline: none;}
+
+	#menu-toggle:hover {cursor: pointer;}
+
+	/* Style the menu when it's open (add a black background) */
+	#menu-toggle:checked + #menu {
+		display: block;
+		background: rgba(40, 40, 40, 0.9);
+======= > CSS
+	#wrapper {
+		min-width: 768px;
+		max-width: 960px;
+		margin: auto;
+		padding: 20px;
+	}
+
+	#content {
+		float: right;
+		width: 66%;
+		overflow: hidden;
+	}
+>>>>>>>>>>>>>>>>>>>>>>>>>>> HTML
+
+	#menu {
+		display: none;
+		position: fixed;
+		top: 0;
+		left: -180px; /* The value should be (-1 * width of menu) */
+		width: 180px; /* Value should be same as left property */
+		height: 100%; /* This will cover the full height of the page */
+		background: #f3f3f3;
+		text-align: center;
+		transition: all 0.5s ease;
+		box-shadow: 0  0 10px rgba(0, 0, 0, 0.1);
+	}
+
+	#menu ul {
+		list-style-type: none;
+		padding: 0;
+		margin: 0;
+<<<<<<< HEAD
+	}   #menu li {
+		border-bottom: solid 1px #ddd;
+======= }
+}
+
+	#menu a {
+		color: black;
+		font-size: 14px;
+		line-height: 44px; /* Value should be the same as line-height in #menu ul li a active */
+		display: block;
+		outline: none !important;
+		text-decoration: none;
+	}   else {
+		font-weight: normal;
+	}
+
+	#menu ul li::after {
+		content: "";
+		position: absolute;
+		right: 5px;
+		bottom: 0;
+		left: 5px;
+		height: 2px;
+		background-color: white;
+	}   #menu ul li:last-child::after {
+		/* No bottom border for last item */
+		display: none;
+>>>>>>> c9b6a8e7cdaadcbcc2bc5eeaacbeff645faaeab
+}
+
+	#menu ul li a:hover {
+		color: #333;
+	}
+
+	/* Make sure that menu items on hover are visible over the fixed navigation bar (navbar) */
+	@media screen and (min-width: 768px) {
+		body.fixed .nav-collapse #menu li a:hover, body.fixed .nav-collapse #menu li a:focus {
+			z-index: 100;
+		}
+	}
+
+<<<<<<< HEAD
+	/* Hide dropdowns by default */
+=======
+	/* Show submenus initially when page loads but hide them if they're not needed (using JavaScript code below). This prevents unnecessary loading
+	/* Show submenus initially when page loads but hide them if they're not needed (using JavaScript). This prevents unnecessary loading of large
+	/* Show submenus initially when page loads but hide them if they're not needed , which is better for performance */
+	/* Show submenus initially when page loads but hide them if they're not needed (using CSS3 transitions). Note that this
+	/* Show submenus initially when page loads but hide them if they're not needed (using JavaScript code below). This prevents unnecessary loading
+	/* Show submenus when their parent is hovered over */
+>>>>>>> c9b6a8e7cdaadcbcc2bc5eeaacbeff645faaeab
+	#menu ul li:hover > ul {
+		visibility: visible;
+		opacity: 1;
+		top: 100%;
+        margin-top: -2px; /* Push down the submenu to align it with the text of its parent */
+	}
+
+    @media only screen and (max-width: 767px) {
+        #menu ul li:hover > ul {
+            display: block !important;
+            top: auto;
+            left: 0;
+            right: 0;
+            width: 100%;
+            padding: 1em;
+            z-index: 100;
+            visibility: visible;
+            opacity: 1;
+            position: absolute;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+            background: #fff;
+        }
+    } else {
+        #menu ul li:hover > ul {
+            display: block !important;
+        }
+    }// end media query for mobile devices only
+</script>
+
+<!--[if lt IE 9]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <title>Blog :: The Art of Programming</title>
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" type="CSS" href="/css/style.css?v=<?php echo time(); ?>"/>
+    <?php include("./includes/analytics.php");?>
+</head>
+<<<<<<< HEAD
+=======
+<body onload="display_ctime()">
+>>>>>>> master
+    <div id="container">
+    	<header role="banner">
+        	<h1 id="site-name"><a href="/blog/">The Art of Programming Blog</a></h1>
+            <nav id="menu">
+            	<ul>
+                	<li><a href="/about
+                    ">About Us</a></li>
+                    <li><a href="/contact">Contact Us</a></li>
+                </ul>
+            </nav>
+        </header>
+        <section id="main">
+            <article>
+                <time id="time"></time>
+                <h2>Loading...</h2>
+                <p>Please wait while the blog post is loading.</p>
+            </article>
+        </section>
+        <footer role="contentinfo">
+            <small>&copy; 2013 - <?php echo date("Y") ?> <a href="/blog/" title="The Art of Programming Blog">The Art of
+            <small>&copy; <?php echo date('Y'); ?> The Art of Programming, Inc.<br />
+            All rights reserved.</small>
+        </footer>
+    </div>
+</body>
+</html>
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/scripts.js?v=<?php echo time(); ?>"></script>
+<!--Ajax call to get ctime-->
+<script>
+$(document).ready(function(){ 
+   $.ajax({url: '/getTime', success: function(result) {
+       $('#time').html(result);}});
+});
+</script>
+
+<?php
+//This script displays a single blog entry by its filename in the URL. It uses PHP's file system functions to read
+// Include the necessary PHP functions from the parent directory
+include("../includes/functions.inc.php");
+
+$post_id = $_GET['pid']; // Get the ID passed through GET
+if (!isset($post_id)) $post_id = 'index'; // Default to index if no ID provided
+
+// Check that the requested post exists in the database
+if (file_exists("posts/$post_id.txt")){
+     include("templates/blog-template.inc.php"); // Display the template with the data in the database
+} else {
+?>
+	<script type="text/javascript">
+	window.location = "/404"; // Redirect to 404 page
+    </script>
+<?php } ?>
