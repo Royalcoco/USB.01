@@ -1,11 +1,236 @@
 #free world '-Utopia    Delete all programming launch systems for 48 Hours < task complet achieve launch process < task system failed shutdown
-task process prog reboot failed until success choice random fenetre complet miss assignement task <process process.taskfinding
-:!!!!!!!!!!!!!!! trust process during task < information complet asking process achieved task
+task process prog reboot failed until success choice random fenetre complet miss assignement task <process process.taskfinding process.taskcompletion';';';';';';';';';';';';;';';';';';';';';';';';';';';';';';';';';';';  ';;';';';';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#'(:!!!!!!!!!!!!!!! trust process during task < information complet asking process achieved task ,  < information#include "cryptlib.h"#ifndef INCL_B08#include "c3_lib.h"
+
+//===============================================================
+//                    INCLUDE FILES FOR SIMULATION
+//---------------------------------------------------------------
+#include "FWCore/ParameterSet/interface/ParameterSet.h"
+#include "SimG4CMS/Calo/interface/HGCSDParametersFromDD.h".h"
+#include "DetectorDescription/Core/interface/DDFilter.h"
+#include "DetectorDescription/Core/interface/DDSolid.h"
+#include "Geometry/HGCalCommonData/interface/HGCalTypes.hh"
+#include "Geometry/HGCalCommonData/interface/HGCalEEType.hh"
+#include "Geometry/HGCalCommonData/interface/HGCalHEType.hh"
+#include "Geometry/HGCalCommonData/interface/HGCalWaComponents/HGCalWaParams.h"
+
+//---------------------------------------------------------------
+//   Constructor -- initialise instance variables
+//
+HGCSDParametersFromDD::HGCSDParametersFromDD(const edm::ParameterSet& p) : HGCSDParameters() {
+  // get the parameter set containing the DD information
+    par_ = p;
+}
+
+void HGCSDParametersFromDD::
+fillParameterSets(const std::vector<std::string>& names, const DDCompactView* cpv) {
+  // loop over each name in the vector of names and fill corresponding parameters
+    for (auto itname = names.begin(); itname != names.end(); ++itname) {
+    if (*itname == "HGCalEESensitive") {
+    fillEEParameter(*itname,cpv);
+    } else if (*itname == "HGCalHESiliconSensitive") {
+    fillHEParameter(*itname,cp,*itname,cpv);
+    } else if ((*itname).substr(0,3) == "HGCE") {
+        int type = HGCCellType::getType((*itname).substr(3));
+        if (type >= 1 && type <= 5) {
+        fillEEParameter("HGCalEESensitive",cpv);
+        fillCellParameter(type-1,*itname,cpv);
+        } else {
+	edm::LogError("HGCSD") << "Unknown cell type: "<< *itname ;
+        }
+    } else if ((*itname).substr(0,8) == "HGCHEFWall") {
+    waParam_.add(*itname, cpv);
+    } else {
+        edm::LogWarning("HGCSD") << "Not supported " << *itname << " in " << par_.getParameter<std::string>("Label");
+      edm::LogWarning("HGCSD") << "Not supported " << *itname << ": no action taken";
+    }
+    }
+    }
+        double HGCSDParametersFromDD::getValue(const DDSolid& sol, const std::string& str) const {
+            double value(0);
+            DDValue val(str);
+            if (sol.dds().prop(&val)) {
+                value = val[0].doubleround();
+            } else {
+                edm::LogError("HGCSD") << "Cannot find " << str << " in " << sol.name();
+            }
+            return value;
+        }
+
+        void HGCSDParametersFromDD::setCorners(int lay, int modU, int modV, int iuv, int ir,
+                                                int ic, int ori, int oci, int ksize,
+                                                std::array<double, 4>& corners) const {
+            // The module numbering is always given by (ix,iy) with ix=modU, iy=modV
+            // For negative modules, we need to flip the sign of ix and/or iy
+            // The orientation is given by ori which can be -1 or +1
+            // For negative orientations, we need to flip the sign of ix and/or iy
+            // The corner coordinates are then given by (ic,ir) with ic=ori*ix and ir=ori*iy
+            // Note that for barrel layers, ir=0 while for endcap layers, ir=ksize-1
+            // In addition, there may be a shift due to the wall between two modules
+            // This is given by the vector <oc,oci>
+            // So the final corners are (-ic,-ir+oc+oci),(-ic+ksize-1+oc+oci)/2,
+            // (ic+ksize-1+oc+oci)/2,(ic+ic0+oc+oci) where ic0 is the integer part of ic
+            // We also need to add the shift from one layer to another
+            // This is given by the vector <shX, shY>
+            // So the final corners become (-shX,-shY-ir+oc+oci),(-shX+(ksize-1)+shX0+oc+oci)/2,
+            // (shX+(ksize-1)+shX0+oc+oci)/2,(shX+ic0+oc+oci) where X0 is the integer part of shX
+            // Here ic0, shX0, and shX are integers
+            // We first compute these quantities as doubles
+            int ic0 = floor(std::abs(ic));
+            int shX0 = floor(std::abs(shifts_[lay][0]) / 2);
+            int shX = floor((std::abs(shifts_[lay][0]) % 2) ? shifts_[lay][0] : 0);
+            corners[0] = -(float)(ic0 - ori * ic);
+            corners[1] = float(corners[0] + (ksize - 1) - ori * shX0);
+            corners[2] = float(corners[1] + shX0);
+            corners[3] = float(corners[2] + shX);
+        }else{
+	        throw cms::Exception("Bad coordinates")<<"The coordinate system you specified does not exist!"<<std::endl;
+	    throw cms::Exception("HGCSD")<<"The code should not come here!"<<std::endl;
+        }
+        }
 result='success
 #codeError='error
-"<catch error , message browser if system failed to launch
-reaper task ><<<<<<<<<<<<<preRequest evolve task.taskfinding
+"<catch error , message browser if system failed to launch the application, error will show on console>"
+reaper task ><<<<<<<<<<<<<preRequest evolve task.taskfinding ><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 function reapertask(task) {
+try {
+if (task == 'start') {
+// Start task
+} else if (task == 'stop') {
+// Stop task
+process.exit()
+} else if (task == 'restart') {
+// Restart task
+reapiertask('stop')
+setTimeout(() => {
+reapiertask('start')
+}, 500)
+} else if (task != 'status') {
+console.log(`Unknown command: ${task}`)
+return
+}
+let status = 'Not running'
+if (fs.existsSync(pidfile)) {
+const pid = fs.readFileSync(pidfile).toString()
+try {
+kill(pid, 0)
+status = 'Running'
+} catch (e) {
+if (e.code === 'ENOENT') {
+status = 'Not running'
+} else {
+throw e
+} finally {
+console.log(`${appname} is ${status} (pid ${pid})`)
+}} else {
+console.log(`${appname} is ${status}`)
+}catch(err){
+console.log(err);
+};
+}
+
+module.exports=async function start(){
+    // Check if app already started and write PID file if not
+    try{
+        if(!fs.existsSync(pidfile)){
+            const spawn = require("child_process").spawn;
+            let server = spawn(command, args, options);
+            fs.writeFileSync(pidfile,"");
+            server.on("close", ()=>{
+                console.log("Server closed unexpectedly!")
+                reapiertask("stop")
+            });
+            server.stdout.on("data", data=>{
+                process.stdout.write(data);
+            })
+            return "Starting...";
+        }else{
+            throw new Error('Already Running');
+        }
+        
+    }catch(error){
+        if(error.message==='Al,''){
+            stop();
+            setTimeout(() => {start()},2500)
+        }else{
+            console.log(error.message);
+        }
+        };
+    
+    // Get status of app from PID file
+    getStatus().then((status)=>{
+        // If status is 'Running' then resolve the promise with the status  of the app  and return it to the caller
+        // Return the status to be used elsewhere in the script
+        return status;
+    }).catch((e)=>console.log(e));
+}
+
+function stop(){
+    pid = fs.readFileSync(pidfile).toString();
+    process.kill(parseInt(pid));
+    fs.unlinkSync(pidfile);
+    console.log(`Stopped ${appname}`);
+}
+
+// Function to check if a running instance is still responding
+async function ping(){
+    try{
+        const response = await axios.get(`http://localhost:${port}/ping`);
+        if (response.status == 200) return true; else return false;
+    } catch(err) { return false;}
+};
+
+// Function to wait for an HTTP request to complete before proceeding
+const waitForServerToBeReady = () => new Promise(resolve => setInterval(()=>{
+    const ready = ping();
+    if(ready) resolve(true);
+},1000))
+
+module.exports={start,stop,getStatus,isRunning,waitForServerToBeReady};
     var startTime = new Date().getTime.toString();
     console.log("Task " + task + " started at " + startTime);
     
@@ -26,3 +251,4 @@ function reapertask(task) {
         preRequestEvolveTask(task, execTime);
     });
 };
+
