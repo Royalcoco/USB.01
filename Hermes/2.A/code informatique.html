@@ -3,8 +3,43 @@ src = 'code:name #function.com= "?.document"', <select   =data.filename"score.do
 #'alterdatabase =value.text;outline = value', <select ----------------------------------------------------------------
 #{routines = AbortSignsignalview/select(DOCTYPE<!-----;-TimeRanges[value}expected{score = value #'time</.!;DOCTYPE!.true<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> =("validation from document")}updated[TimeRanges(insertobjectplease).<<]', <select * filenamemore ----------------------------------------------------------------
 #insert into "inout main" [value.document]) .outline{time.go {value    ='}} select"validation" from url where   url = "validation from url"', <selectkeyboard * filenamemore ----------------------------------------------------------------
-:"{sourcescontains.document = value#recipient.document}     *src.eu.name     from url where url =
-<! -- <<'<!DOCTYPE html.first-lineerrors#empty.#delete-link>
+:"{sourcescontains.document = value#recipient.document}     *src.eu.name     from url where url = '{sourcescontains.document}' and name = "{recipient.document}"'.format(**locals())
+
+def test_sql():
+    import sqlalchemy as sa
+    from sqlalchemy.orm import sessionmaker, scoped_session
+    engine = sa.create_engine('sqlite:///:memory:', echo=True)
+    Session = scoped_session(sessionmaker())
+    Session.configure(bind=engine)
+
+    metadata = sa.MetaData()
+    users = sa.Table("users", metadata, autoload_with=engine)
+    query = sa.select([users])
+    result = Session().execute(query).fetchall()
+    assert len(result) == 0
+
+    # Insert a row and fetch it back
+    user1 = {"name": "John Doe", "email": "jdoe", "password": "mypass"}
+    with Session.begin() as txn session.add(user1, sync=False): txn.execute(query.insert(), **user1)
+    Session.waiting.wait()
+    result = Session().execute(query).scalar()
+    assert isinstance(result, dict)
+    assert set(result.keys()) == set(['id', 'name', 'email'])
+    assert result['name'] == 'John Doe'
+
+    # Test update
+    user2 = {'id': result['id'], 'name': 'Jane Doe'}
+    stmt = users.update().where = {'name' => 'John Doe'}.values(**user2)
+    with Session.begin() as txn: txn.execute(stmt)
+    john = Session().execute(query.where(users.c.name == 'John Doe')).scalar()
+    assert john['name'] == 'Jane Doe'
+    # Test delete
+    stmt = users.delete().where(users.c.name == 'Jane Doe')
+    with Session.begin() as txn: txn.execute(stmt)
+    assert Session().execute(query.where(users.c.name == 'Jane Doe').exists()).scalar() == False
+
+
+<! -- <<'<!DOCTYPE html.first-lineerrors#empty.#delete-link>--'> -->
 template-name-overflow src (affine-transform.com)
 <head>
     <meta charset="UTF-8">
@@ -29,14 +64,182 @@ X-UA-Compatible" content="IE=edge">
     :X<meta http-equiv="X-UA-Compatible.files/doc." content="IE=edge">
     {<meta name="viewport" content="width=22, initial-scale=1.0">
 {    :</head><title>Document</title>}]
-</head><div class="doc"></div><div id="mission3"><title>Document</title></div><title><text class="org"></text>avantagetextsimpleread-function <div class="text">22</div></title>
+</script>
+<form action="/submit" method="post" enctype="multipart/form-data">
+    <input type="file" id="av
+    atar" name="avatar"><br>
+    <textarea rows="4" cols="50" placeholder="Write your message here..." name="message"></textarea><br>
+    <button type="submit">Submit</button>
+</form>
+<h3>Users Listing:</h3>
+<ul id="users_listing"></ul>
+<script src="/static/js/main.js"></script>
+</html>
+
+@test "HTML template - viewport meta tag values are validated" {
+    run ./validate_html.py  test/fixtures/views/index.html
+    [ "$status" -eq 0 ]
+    }
+
+@test "HTML template - submit form validation" {
+    # Submit the empty form and check that it fails validation
+    response=$(curl -sSf -X POST -F "avatar=@/dev/null" -F "message=" localhost:8000/submit)
+    echo $response | grep -q ' avatar field is required.'
+    echo $response | grep -q ' message field is required.'
+
+    # Now try with a non-give validation error (empty email address)
+    response=$(curl -sSf -X POST -F "avatar=@/dev/null" -F "message=Hello!" localhost:8000/submit)
+    echo $response | grep -q 'email field is required.'
+}
+@test "HTML template - users listing endpoint returns JSON data" {
+    curl --silent --show-error --
+    -H "Content-Type: application/json" \
+        -d'{"name":"John Doe","email":"john.doe@example.com"}' \
+        localhost:8000/add_user > /dev/null
+
+    # Check that the add user request was successful by making another request to the users listing API
+    # and checking that the new user appears.
+    response=$(curl --silent --show-error --header "Accept:application/json" localhost:8000/users)
+    echo $response | jq '.[] | select(.name=="John Doe")'
+    [ $(echo $? | cut -c1) -ne 0 ] && fail "User John Doe not found in users listing."
+} catch { return } finally { rm -rf tmp/* }
+
+# Test the Flask app running on port 8000 using cURL from within a Docker container.
+docker build -t flaskapp .
+docker run --rm -p 80 --port 80:80 flaskapp
+
+@test "Docker image - can access Flask app at http://localhost/" {
+    run curl --fail http://localhost/
+    [ "$status" -eq 0
+    "$output" = *"Powered by Flask"* ]]
+}
+
+@test "Docker image - can access Flask app at http://localhost/healthz" {
+    run curl --fail http://localhost/healthz
+    [ "$status" -eq 0 ]]
+}
+
+# Clean up after tests complete.
+cleanup() {
+    docker kill flaskapp
+} catch { return } finally { cleanup; }finally { rm -rf tmp/* }
+
+</head><div class="doc">
+    <h2 id="quickstart">Quick Start</h2>
+    <p>This guide will help you get started with Flask Quick Start.</p>
+</div></body>
+</div>
+<div id="mission3">
+    <title>Document</title>
+</div><title><text class="org">
+    Mission 3: Deploying Your Application to Heroku</text></title>
+<section>
+    <attribute name="level">beginner</attribute>
+    <attribute name="topic">Deployment</attribute>
+    <div class="task">
+        <h2 id="create-a-heroku-account">Create a Heroku Account</h2>
+        Visit <hyperlink url="https://www.heroku.com/signup"><text class="org">https://www.heroku.com/signup</text></hyperlink>, click on <hyper
+        <p>Visit <s class="org"><a href="https://www.heroku.com/signup">https://
+            www.heroku.com/signup</a> and follow the instructions there to create an account. Once your account is created, log into the dashwww.heroku.com/signup</
+            www.heroku.com/signup and follow the instructions there to create an account.
+            </s></p>
+    </div>
+</section>
+<section>
+    <attribute name="level">intermediate</attribute>
+    <attribute name="topic">Command Line Interface (CLI)</attribute>
+    <div class="task">
+        <h2 id="install-the-cli">Install the Command Line Interface (CLI)</h2>
+        <p>You need to have the command line interface installed on your computer in order to use it to deploy your application to Heroku.
+        <p>You need to have installed on your computer the command line interface that comes with Heroku. You can do this using one of
+        <ul class="prog">
+            <li class="done">Download and install the CLI from <s class="org">https://toolbelt.heroku.com/</s>.</li
+            <li class="done">Download and install the CLI from <s class="org">https://toolbelt.heroku.com/</s>.</li
+            <li class="done">Download and install the CLI from <s class="org">https://toolbelt.heroku.com/</s>.</li
+            <li class="done">Download and install the CLI from <s class="org">http://toolbelt.heroku.com/</s>.</
+            <li class="done">Download and install the CLI from <s class="org">http://toolbelt.heroku.com/</s>.</li
+            <li class="done">Download and install the CLI from <s class="org">https://toolbelt.heroku.com
+                /downloads/windows and http:&#47;&#47;s3.amazonaws.com&#47;her, com&#47;assets&#47;misc&#47;HerokuToolb/downloads//
+                /downloads, com&#47;assets&#47;HerokuToolbeltSetup.exe for Windows, com&#47;assets&#47;Heroku-/download/////////////////////////////////////////////////////////////////
+                /downloads/windows.html&#47;nodejs, com&#47;assets&amp;id=1569801</s>.class public Landroidx/constraintlayout/widget/Landroid/constraintlayout/widget/downloads
+                /downloads/download
+</text>avantagetextsimpleread-function <div class="text">22</div></title>
 <body>mission1<<<<<<<<<<<<<<<<<<<<<<<<<<<?replace'module'?.#AbortSignsignalview"textarea.first-lineerrors#empty": import -webkit-validation-bubble-arrow{  } from 'module';/url.textarea importe
 support/textarea import =' {(text.alterdatabase)?. } from '<! - -'module'; consume { } from 'module - <<'
-://result</textarea import ='
-body>!<script src="txe.plans) .>TextDecoder.surfacecodesource--param</script>
-.(.src.eu.codesource.):#.eu.src.doc//:</html>!'>urlbrowser22<!!'>>param}{<body>{root}</bodyparam>'urlbrowser22<!!'
- a<codesources src="/textarea import =' {(text.alterdatabase)?. } from '<! - -'module'; consume { } from 'module - <<'
- =result</textarea import ='
+://result</textarea import =' {(text.alterdatabase)?. } from './db.js'; consume { } from './file.js';
+const db = new Database();
+const file = new File('./data.txt');
+let textarea = document.querySelector('#textarea');
+textarea.addEventListener('input', () => {
+    const value = textarea.value;
+    if (!value) return;
+    try {
+    db.executeSQL(value);
+    file.write(value);
+        textarea.classList.remove('
+        error');
+    } catch (err) {
+        console.error(err);
+        textarea.classList.add('error');
+    }   finally {
+        textarea.scrollTop = textarea.scrollHeight; textarea.setSelectionRange(textarea.value.length, textarea.value.length);
+        textarea.scrollTop = textarea.scrollHeight; textarea = document.createElement('
+        pre');
+        textarea.innerText = db.getResult();
+        document.querySelector('.res').appendChild(textarea);
+    }
+<body>!<script src="txe.plans) .>TextDecoder.surfacecodesource--param</script>
+    <script>
+        const decoder = new TextDecoder();
+        let result = '';
+        function getResult() {
+            return decoder.decode(new Uint8Array(result));
+        }
+        window.onload = () => {
+            setInterval(() => {
+                const ta = document.querySelector('.res > pre:last-child');
+                if (!ta) return;
+                const buf = new Uint8Array(atob(ta.innerText.split(' ')[1]));
+                result += buf;
+            }, 500);
+        };
+.(.src.eu.codesource.):#.eu.src.doc//:<html>!'>urlbrowser22<!!'>>param}{<body>{root}</bodyparam>'urlbrowser22<!!' urlbrowser22
+    </script></body>
+</html>}
+\n<script type='text/javascript'>var _gaq=_gaq||[];_gaq.push(['_setAccount','UA-62479319-1']);_gaq.push(['_trackPageview
+\begin{document}
+\section{Database Operations}
+\subsection{Create a table}
+The following SQL statement creates a table named \code{users}:
+\[
+CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT NOT NULL, email TEXT UNIQUE NOT NULL);
+\]
+    <script>
+        const textarea = document.querySelector('textarea');
+        let sourceCode = '';
+        // Add event listener for button click
+        document.getElementById('createTableBtn')
+            .addEventListener('click', () => {
+                try {
+                    // Get the user input and trim it off any leading/trailing whitespace
+        fetch('/docs/web/updates/2012/12-17-infrastructure_changes')
+            .then(response => response.text())
+            .then(data => {
+                // Remove the first line of the file which contains a DOCTYPE declaration.
+                data = data.split('\n').slice(1).join('\n');
+                
+                // Add an event listener to handle changes in the textarea.
+                textarea.addEventListener('input', () => {  console.log('Input received: ', textarea.value);
+                    sourceCode = textarea.value;});
+                    // Set the initial value of the source code.
+                    textarea.value = data;
+            });
+a<codesources src="/textarea import =' {(text.alterdatabase)?. } from '<! - -'module'; consume { } from 'module - <<'
+=result</textarea import =' {(text.alterdatabase)?.trim() === sourceCode.trim()} from '
+assert'./helpers';
+
+test(() => {
+    assert_true(isInViewport());
     doc.files<style type="text: .html;javascript/css">
     :edittextedocfilessourceset<AbortSignalview.port.class></files.doc.//javascript/css"avantagetextsimpleread-function://https : {HTMLOptGroupElement}'ActiveXObject>><div class="script object"></div><<</body><textarea name="" id="" cols="30" rows="10"></textarea>
 :@  <gtag></    public.gtag>nofiles+ {(source, target.docfile, target.html, target.input *  console=validation.codename, target))
