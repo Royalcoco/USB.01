@@ -840,3 +840,132 @@ $(function(){
                                     btn-xs" onclick=" changeStatus({{ $course->cid }},'{{ $course->status }}');">{{
                                     btn-xs" onclick="changeStatus({{ $course->cid }},'{{ $course->status }}')">{{
                                         
+                                        btn-xs"  onclick = 'changeStatus({{ $course->cid }})' >{{$course->status}}</button>
+                                    btn-xs"  onclick = 'changeStatus({{ $course->cid }})' >{{$course->status}}</button>
+                                    btn-xs"  onclick="changeStatus({{ $course->cid }},'{{ $course->status }}')">
+                                    btn-xs"  onclick = 'changeStatus({{ $course->cid }},'{{ $course->status }}
+                                    btn-xs"  onclick = 'changeStatus({{ $course->cid }})' >{{$course-> status}}
+                                    btn-xs"  onclick = 'changeStatus({{ $course->cid }})' >{{$course-> status}}</button>
+                                    btn-xs"  onclick = 'changeStatus({{ $course->cid }})' title="@if ($course->status
+                                    btn-xs"  onclick = 'changeStatus({{ $course->cid }})' title="@if ($course->status
+                                    btn-xs"  onclick = 'changeStatus({{ $course->cid }})' >{{ $course->status }}
+                                    btn-sm" onclick="changeStatus({{ $course->cid }})">{{ $course->status }}</button>
+                                    btn-sm"  onclick = 'changeStatus({{ $course->cid }})' >{{$course->status}}
+                                    btn-sm"  onclick = 'changeStatus({{ $course->cid }})' >{{ $course-> status }}
+                                    btn-sm"  onclick = 'changeStatus({{ $course->cid }})' >{{ $course->status }}
+                                    btn-sm"  onclick = 'changeStatus({{ $course->cid }})' >{{$course-> status}}</
+                                    btn-sm"  onclick = 'changeStatus({{ $course->cid }})' >{{ $course-> status }}
+                                    btn-sm"  onclick = 'changeStatus({{ $course->cid
+                                        }},this,"/admin/Course/ChangeStatus");' >{{$course-> status}}</button> }})' > }})' >{{ $course->status }} }})' >{{$course->status}} }})' >{{ $course-> status }} }})' >{{ $course->status }} }})' >{{$course->status}} }})' >{{ $course-> status }} }})' >{{$course->status}} }})' >{{$course->status}} }})' >{{$course-> status}} }})' >{{ $course-> status }}{{ $course }})' >{{$course-> status}} }})' >{{$course-> status}} }})' > }})' >{{ $course->status }} }})' >{{ $course->status }} }})' >{{ $course-> status }} }})' >{{$course->status}} }})' >{{$course-> status}} }})' >{{ $course-> status }} }})' >{{$course-> status}} }})' >{{$course-> status}} }})' >{{$course->status}}
+                                        }},this,"/admin/Course/ChangeStatus");' >{{$course-> status}}</button> }})' >  }})' > }})' >{{ $course-> status }}
+                                        }},"{{ route('admin.course.changestatus') }}","/admin/Course/getDataForPage",this);'>{{$ }})'>{{$course->status}}</button }})'>{{$course-> status}}</ }})'>{{$course-> status}}</ }})'>{{$course-> status}}</ }})'>{{$course-> status}}</ }})'> }})'>{{$course-> status}}</ }})'>{{$course-> status}}</ }})'>{{$course->status}}</ }})'> }})'>{{$course-> status}}</
+                                        }},this)'>{{$course-> status}}</button>
+                                </td>
+                            </tr>
+                            
+                        @endforeach
+                    
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+@stop
+
+@section('js')
+<script type="text/javascript">
+function changeStatus(cid,obj){
+    // alert("123");
+    $.ajaxSetup({headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});//laravel csrf token
+    var url="/admin/coursemanage/changestatus";
+    $.post(url, { cid: cid }, function (data) {
+        if(data.code==0){
+            $(obj).removeClass("btn-danger").addClass("btn-default disabled");
+            $(obj).html("禁用");
+            }else{
+            $(obj).removeClass("btn-default disabled").addClass("btn-danger");
+            $(obj).html("启用");
+        };
+        layer.msg(data.message);
+        });
+}
+// 分页
+layui.use(['laypage', 'layer'], function(){
+    laypage = layui.laypage;
+    layer = layui.layer;
+    });
+var currPage=1;
+var totalNum=parseInt($("#pagination") .attr("totalNums"));
+var pageSize=parseInt($("#pagination") .attr("pageSize"));
+currPage=$("#pagination").attr("currPage");
+if(isNaN(currPage)){
+    currPage=1;
+}
+laypage.render({
+cont: 'pagination' //容器 static
+,pages: totalNum //通过后台获得的总页数
+,groups: 5 //连续显示分页数
+,last: false //最后一页不显示
+,prev: '<i class="fa fa-angle-left"></i>' //上一页按钮�,next: '<i class="fa fa-angle-right"></i>' //下一页按钮�,next: false //下一页按
+,prev: '<i class="fa fa-angle-left"></i>' //上一页按钮�,next: '<i class="fa fa-angle-right"></i>' //下一页按钮�,next: false //下一页按
+,prev: '<i class="fa fa-angle-left"></i>' //上一页按钮�,next: '<i class="fa fa-angle-right"></i>' //下一页按钮 ///是否显示首末页 ///
+,prev: '<i class="fa fa-angle-left"></i>' //上一页按钮�,next: '<i class="fa fa-angle-right"></i>' //下一页按钮�,next: false //下一页按
+,prev: '<i class="layui-icon">&#xe603;</i>' //上一页button
+,next: '<i class="layui-icon">&#xe602;</i>' //下一页button
+,jump: function(obj, first){ //触发分页后的回调
+// console.log(totalNum);
+console.log(pageSize);
+if(!first){ //点击跳页
+    $("#searchForm").submit();
+};
+$(".layui-this").parent().children("span").text($(obj.elem).text());
+currPage=$(obj.elem).text();
+}});
+function searchCourse() {
+    var keyword = $('#keyword').val();
+    $.ajax({
+        url:'/admin/course/list?t='+new Date().getTime(),
+        type:"post", "data:{keyword:\'" + encodeURIComponent(keyword) + "\'}",
+        success:function (data) {
+            /* if(data.status==1){*/ if(data->status==1){
+                window.location.href="/admin/course";
+            }else{
+                alert('查询失败');
+            }
+            },error : function () {alert('请求错误')}
+    })
+}
+function delCourse(id) {
+    layer.confirm('确定删除此项目吗？', {
+        btn: ['确认','取消'] //按钮�        ,btnAlign: 'c'Or 'l'Or 'r'Or 'c'
+        ,area:['480px','270px'] //自定义
+        ,shade:0.5
+        ,closeBtn: 0
+        ,zIndex: layer.zIndex -999
+        ,success: function(layero){
+            $(layero).find('.layui-layer-title').css({'background-color':'#393D48', 'color': '#fff', 'font-weight
+            layui.layer.setTop( $layer )});
+        var $btn = $(layero.find('.layui-layer-btn'));
+        $btn.css({"text-align": "center"});
+        $btn.on("click", ".layui-layer-btn0", function(){
+            $.ajax({
+                url:'/admin/course/delete',
+                data:{cid:id},
+                type:"POST",
+                success:function(data){
+                    if(data.status ==  1){
+                        layer.msg('删除成功!', {icon:6,time:1000});
+                        location.reload();//do something
+                    }else{
+                        layer.msg('删除失败!', {icon:5,time:    1000});
+                    }
+                    
+                    }
+            });
+            });
+            
+        return false;
+        }
+    };
+    </script>
+</body></html>
