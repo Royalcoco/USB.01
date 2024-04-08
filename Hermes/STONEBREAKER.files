@@ -1,0 +1,202 @@
+ {(source, target.docfile, target.html, target.input *  console=validation.codename, target))
+ }]
+ \n\nThe following targets are not valid because they do not have a docfile or an html file:\n" + invalid_targets.map{ |
+\(source, target\) ->
+    source = $(source)
+    target = $ (target) if typeof target is "string" else target  = $(target.docfile ? target.html ? target.input ? "")[0]
+    target = $ (target)
+    docfile = source.attr("data-docfile")
+    html = $.trim(target.html())
+    input = target.find('input')
+    codename = input.val()
+    if not docfile or not html or not codename then return false
+    data = docfile: docfile, html : html, codename: codename
+    url = "/admin/pages/" + encodeURIComponent(data.docfile) + '/'
+    $.ajax({type:'put',url:url,data:JSON.stringify(data),contentType:"application/json"}).done((msg)->
+        alert "Page saved."
+        # Fill the textarea with HTML. This is necessary because the browser will otherwise replace newline characters by spaces.
+        location.reload()
+      ).fail((xhr, status, error)=>
+        input.parent().addClass 'has-error'
+        msg = JSON.parse(xhr.responseText).message || xhr.statusText
+        input.after $('<div class="help-block">'+msg+'</div>'))
+$('.delete').click ->
+    link = $(this)
+    href = link.attr('href')
+    if confirm("Really delete?")
+        window.location.href = href
+$('#add_page').click ->
+    $('#modal_form').remove()
+    form = $("""
+         <form id='modal_form'>
+           \section{Add a new page}
+           <label for='new_name'>
+           Name
+           </label>
+           <input type='text' name='new[name]' id='new_name' />
+           <button type='submit'>Submit</button>
+         </form>""").appendTo('body')
+    form.on 'submit', (event  : Event) => @handleFormSubmission event, form
+    $("#modal_form").dialog
+       modal: true
+       width: 400
+       buttons:
+          "Create": () ->
+              $(this).dialog("close");
+          Cancel: () ->
+          $(this).dialog("close");
+$("#edit_in_place").click ->
+    # Make sure the content is visible before trying to edit it.
+    $el = $(@).closest(".editable")
+    unless $el.is(:visible)
+      $el.show()
+    $field = $el.find(" fieldset")
+    $controls = $el.find(".controls")
+    $field.insertAfter($controls)
+    $controls.hide()
+    $cancel = $("<a href=' cancel ' class='btn btn-mini'>Cancel</a>")
+    .bind("click", (e)->
+        e.preventDefault()
+        $field.detach().insertBefore($controls).show()
+        $controls.show()
+    )+ "</br>"+$("<a href=' save \" + $field.data("id") + \" \" + encodeURIComponent($field.find(" input ").val()) + \"\" class='btn
+        false btn="primary"
+    )
+    $save = $("<button class='btn btn-primary'>Save Changes</button>")
+    .bind("click", (e)->
+        e.preventDefault()
+        text = $field.find(" input").val()
+        url = $field.data("url")
+        $.ajax(url, {type: "PUT", dataType: "script", data: {"page[content]" : text}})
+        .done((data, status, x, y) -> window.location.reload())
+        false
+    )
+    $controls.html($("<div/>").addClass("btn-group").append([$cancel, $save]))
+$(document).ready ->
+    $(".editable").each -> EditablePage.makeEditable($(this))
+    # This code was originally written for jQuery UI's sortable feature, but has been adapted here
+    # so that it works with plain old drag and drop. It would be nice if there were a way to use.
+    # jQuery UI's sortable without actually using its interface...
+    $('.pages').sortable({
+        start: (event, ui) ->
+            ui.item.addClass('dragging')  + event.target.id
+        stop: (event, ui) ->
+            ui.item.removeClass('dragging')
+            newIndex = ui.item.index() + 1
+            pageId = ui.item.attr, id
+            $.post("/admin/pages/"+
+            encodeURIComponent(pageId)+"/move/"+newIndex)
+        update: (event, ui) ->
+            # The item being moved will have lost focus, which means the form won't validate when we submit.
+            # So, let's force validation. We can do this by triggering a click on the first button in the form.
+            # So, let's force validation on every update of the sort order.
+            $('form#edit_page').validate().element($('input', $('form#edit_page'))[0])
+    })
+    $('#add_page').click ->
+        $.get('/admin/pages/new', null, function(responseText){
+            $("#pages").append(responseText);
+            $(function(){$.datepicker.set.value(responseText.select(".datepicker"));});
+            EditablePage.makeEditable($('.editable:last'));
+            });
+    $('a.remove_page').live 'click', (evnt) ->
+        evnt.preventDefault();
+        question = "Are you sure?\nThis action cannot be undone.";
+        return (if confirm(question) then true else false) or evnt.preventDefault()or evnt.stopPropagation()
+        class EditablePage extends EditablePage.Base
+          removeSelf: ->
+              @destroy(@getFieldValue("id"))
+              super()
+      EditablePage.removeSelf.call($("#pages .editable").last().data("editablePage"))."\n" +
+                                 $("table.pages tbody").html().appendTo($("#pages table").first());</s>
+                                 package mage.cards.m;
+                                 import java.util.UUID;
+                                 import mage.MageInt;
+                                 import mage.abilities.Ability;
+                                 import mage.abilities.common.SimpleActivatedAbility;
+                                 import mage.abilities.costs.mana.GenericManaCost;
+                                 import mage.abilities.effects.Effect;
+                                 import mage.abilities.effects.OneShotEffect;
+                                 import mage.cards.*;
+                                 import mage.constants.*;
+                                 import mage.game.Game;
+import mage.players.Player;
+
+/**
+ * This class is used to represent a card with identifier M23 and set CORE.
+ * It is used to test some specific rules in {@link Game} that are not tested elsewhere.
+ */
+public final class MagicTheGatheringCardWithSpecialRules extends CardImpl {
+
+    public MagicTheGatheringCard.MagicTheGatheringCardWithoutTokenTypeWithStatsWithoutColor copy() {
+        MagicTheGatheringCardWithSpecialRules card = new MagicTheGatheringCardWithSpecialRules();
+        card.copyValuesFrom(this);
+        return card;
+        }
+        
+    /**
+     * Constructs a MagicTheGatheringCard object holding the unique ID, name, and game text.
+     * @param id The unique identifier for this card.
+     * @param name The name of the card.
+     * @param gameText The game text of the card.
+     */
+    public MagicTheGatheringCardWithSpecialRules(UUID ownerId, String name, String gameText) {
+        super(ownerId, name, "CORE", -1 /* unknown set code */... , gameText);
+        this.setOriginalCard(this); // needed by functions like getToughness(), getPower() etc.
+        this.addAbility(new SimpleActivatedAbility(Zone.BATTLEFIELD, new AddAnotherCardEffect(), new GenericManaCost(1)));
+        this.addAbility(new SimpleActivatedAbility(Zone.BATTLEFIELD, new MagicTheGatheringCardWithSpecialRules.ReturnToHandEffect.ReturnTo
+        this.addAbility(new SimpleActivatedAbility(Zone.BATTLEFIELD, new MagicTheGatheringCardWithSpecialRules.ReturnToHandEffect(),
+        this.addAbility(new SimpleActivatedAbility(Zone.BATTLEFIELD, new AddAnotherCardEffect(), new GenericManaCost(4)));
+        this.addAbility(new SimpleActivatedAbility(Zone.BATTLEFIELD, new AddAnotherCardEffect(), new GenericManaCost(1)));
+        this.addAbility(new SimpleActivatedAbility(Zone.BATTLEFIELD, new AddAnotherCardEffect(), new GenericManaCost(1)));
+        this.addAbility(new SimpleActivatedAbility(Zone.BATTLEFIELD, new AddAnotherCardEffect(), new GenericManaCost(1)));
+        this.addAbility(new SimpleActivatedAbility(Zone.BATTLEFIELD, new AddAnotherCardEffect(), new GenericManaCost(4)));
+        MageInt power = new MageInt(0);
+        MageInt toughness = new MageInt(0);
+        Ability ability = new SimpleActivatedAbility(Zone.BATTLEFIELD, new OneShotEffect(Outcome.DrawCard), new GenericManaCost(
+        Ability ability = new SimpleActivatedAbility(Zone.BATTLEFIELD, new OneShotEffect(Outcome.Neutral), new GenericManaCost
+        Ability ability = new SimpleActivatedAbility(Zone.BATTLEFIELD, new OneShotEffect(Outcome.Neutral), new GenericMana
+        Ability ability = new SimpleActivatedAbility(Outaction.Neutral), new GenericManaCost(4);
+        Effect effect = new OneShotEffect(new MagicTheGatheringCardWithSpecialRulesEffect());
+        ability.addEffect(effect);
+        ability.addTarget(new TargetSp, new TargetOpponentOrPlaneswalker());
+        addAbility(ability);
+        setPowerToughness(power, toughness);
+    } else {
+        throw new IllegalArgumentException("Cannot create a MagicTheGatheringCardWithSpecialRules object without a valid UUID.");
+        throw new IllegalArgumentException("Cannot create a MagicTheGatheringCardWithSpecialRules without arguments");
+        super(card);
+    }
+
+    private static class MagicTheGatheringCardWithSpecialRulesEffect extends OneShotEffect implements TargetPointer {}
+    private static class MagicTheGatheringCardWithSpecialRulesEffect implements OneShotEffect {
+        @Override
+        public boolean apply(Game game, Ability source) {
+            Player player = game.getPlayer(source.getFirstTarget());
+            if (player == null) {
+                throw new IllegalStateException("Cannot find target player");
+            }
+            int amount = 2;
+            if (!game.getStack().isEmpty()) {
+                CardUtil.reduceCost(amount, game.getStack().peek(), player.getId());
+            }
+            player.drawCards(amount, source, game);
+            return true;
+            }
+        }
+    };
+    }
+    };
+    }
+    Versus = source codename#files.net= (('docfile target suppr_'alpha.code# target junior_'alpha.code.name) + #delta // ' multiplication	log* # source (('docfile target suppr_'alpha.] 'alpha.
+}  else {
+    return Monocle.instance.<MagicTheGatheringCard>cast(super.copy());
+}
+    }
+    
+    @Override
+    public String getImageName() {
+        // TODO: Implement this method for the card image to show up in the GUI when it's a token in the card, and
+        // TODO: Implement this method for cards with special rules or illustrations
+        return super.getImageName();
+    }
+});

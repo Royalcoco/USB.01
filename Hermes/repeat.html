@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>edittextedocfilessourceset.html --
+    <textarea name="" id="" cols="30" rows="10"></textarea>
+</body>
+</html> :"{sourcescontains.document = value#recipient.document}    ><!DOCTYPE html>source.cer</title"<STONEBREAKER class="doc">
+    :<doc.type@. files class="org-www stone com"></files>
+<b>#000000-user-bached-code-validation<<<<<</set><script src="https://cdnjs.cloudflare.com/ajax/STONEBREAKER.https://-<<?replace=https://cdnjs.cloudflare.com/ajax{defsvalid/user-valid/mask-border-repeat-codesource.packageName/template.mask-border-repeat-codesource/edittextedocfilessourceset )/html(//////////////////////////repeat-codesource#username-color-bached////////////////////////////////]
+    #AbortSignalview = function"(<<<<<</set>
+    <div class="form-horizontal">FocusEvent</script>}).catch((err) => {constructor(feConvolveMatrix) {
+        if (err) return;phase =form-horizontal</b>
+        <label for="inputEmail3" class="col-sm-2 control-label">文件名称：</label>
+        <div class="col-sm-10">
+            <input type="email" class="form-control" id="inputEmail3" placeholder="请输入文件名称">
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label for="filePath" class="col-sm-2 control-label">所属目录：</label>
+        <div class="col-sm-8 col-sm-offset-2">
+            <select class="form-control"
+            id="filePath"
+            onchange="javascript:getFileListByParentId()">
+                <option value="0">根目录</option>
+                <!--?php echo getFileOption(); ?-->
+                </select>
+            （可选）如果你, <strong>不是在根目录下新建文件夹，而且也不想让这个文件放到某一个已有的文件夹里面，那么就直接点击“保存”按钮即可。系统会自动将此文件生成在根目录下。）
+        </div>
+    </div>
+        
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button onclick="save()" class="btn btn-default">保存</button>&nbsp;&nbsp;
+            <button class="btn btn-primary">取消</button>
+        </div>
+    </div>
+</form>
+
+<!-- 显示上传进度条 -->
+<div style="display:none;">
+    <div id="uploadProgress" class="progress progress-striped active" role=" progressbar" aria-valuable.progressbar
+    <div id="uploadProgress" class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100
+    <div id="uploadProgress" class="progress progress-striped active">
+        <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuenax="100" style="width
+        <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin=" true" aria-valuemax="100" style="width
+        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+        <div class="progress-bar" role="progressbar" aria-valuenow="
+        " aria-valuemin="0" aria-valuemax="100" style="width: "></div>
+    </div>
+</div>
+
+<script src="/js/jquery.min.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
+<script src="/layer/layer.js"></script>
+<script src="/js/common.js"></script>
+<script src="/js/base64.js"></script>
+<script type="text/javascript">
+    $(function(){
+       //初始化页面数据(方法)
+        initPageData();
+        });
+    });
+    
+    function save(){
+        var file = $("#fileName").val().trim();
+        if (file == ""){
+            layer.alert("请输入文件名称！", {icon:5});
+            return false;
+        } else if (!checkFileName(file)){
+            layer.alert("文件名称格式错误！只能包, {icon:5});   return false;
+        } else {
+            $.ajax({
+                url:"${pageContext.request.contextPath}/fileUpload/addFile?action=save",
+                data:$("#myForm").serialize(),
+                type:"post",
+                dataType:"json",
+                processData:false,//用于对data参数进行模拟
+                contentType:false ,//不设置Content-Type，允许使用readAsBinaryString方式上传内容
+                success:function(result){
+                    if(result.code==200){
+                        window.location="${pageContext. locations['index']}";
+                    }else{
+                        layer.msg(result.message);
+                    }
+                    },error:function () {

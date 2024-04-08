@@ -1,0 +1,451 @@
+#outline = *code indexes = <select name="object-offline.select disctinct" id=""><basefont>#'alterdatabase =value.text;outline = value', <select =*<!DOCTYPE html>
+<option value="">Select...</option>
+<option value="1" selected="selected">Option 1</option>
+<option value="2">Option 2</option>
+\</select>
+\</basefont>\';
+    var select = jQuery(html);
+    equal(select.val(), "1", "Value of the first option is correct");
+});
+test("attr()", function() {
+    expect(4);
+    equal(jQuery("#mark").attr("
+    title"), "A title", "Check for title attribute.");
+
+    // Test page has a div that looks like this:
+    // This is a div with no attributes.
+    equal(jQuery("#nontrivial").attr("class"), undefined, "Make sure there are no attributes on non-trivial");
+    equal(jQuery("#nontrivial").attr("class"), undefined, "Make sure .attr() doesn't match a non-ex
+    -is attribute.");
+
+    equal(jQuery("<div><span></span></div>")
+    .find("span").attr("nonExistant") == null && jQuery("<div><span nonExistant=''></span></div>")
+    .find("span").attr("nonExistant") === "", "Non-existing attribute returns null");
+    var xhtmlDiv = '<div xmlns="http://www.w3.org/1999/xhtml"></div>';
+
+    equal(jQuery(xhtmlDiv).attr("xmlns"), "http://www.w3.org/1999/xhtml", "Test namespace retrieval");
+    equal(jQuery("<a id='id1' class='a1'></a><a id='id2' class='a2' rel='   descendants' href='http://jqueryjs.com/'></a>").eq
+    equal(jQuery("<a id='id1' class='a1'></a><a id='id2' class='a2'></a>")
+    .filter(".a1").attr("class"), "a1", "Filter by class");
+});
+
+test("addClass()", function() {
+    expect(7);
+    ok(!jQuery("#sap").hasClass("test"), 'Missing class');
+    ok(jQuery("#sap").addClass ("test"), 'Add one class');
+    ok(jQuery("#sap").hasClass("test"), 'Has class now');
+
+    ok(jQuery("#sap").addClass ("test test2"), 'Add multiple classes');
+    ok(jQuery("#sap").hasClass("test"), 'Still has first class');
+    ok(jQuery("#sap").hasClass("test2"), 'Has second class now');
+
+    jQuery("#sap").removeClass();
+    ok(!jQuery("#sap").hasClass("test"), 'Removed class in jQuery.removeClass');
+});
+
+test("cloneEvents() copies events from cloned object to clone (#8065)", function() {
+    expect(1);
+    var counter = 0;
+    $("#check1").bind("click", function() { counter++; });
+    $("<p/>").append($("#check1").clone()).trigger("click");
+    equal(counter, 1, "Event copied when using append");
+});
+    <head>
+        <script src="../../../jquery.js"></script>
+        <script>
+            $(document).ready(function(){
+                module("core");
+                
+                test("attr", function() { });
+                // This test passes if it doesn't throw an exception. See #848
+                test("closest", function() {
+                    $('body').children().closest('table');
+    <title>
+        jQuery Core - attr
+    </title>
+</head>
+<body>
+    <h3>First heading</h3>
+    <div id="first">
+        <p>Paragraph.</p>
+    </div>
+    
+    <h3>Second heading</h3>
+    <div id="second">
+        <p>Paragraph.</p>
+        </div>
+        
+        <div id="jQ12396" style="display: none;">
+            <span class="hidden">Hidden element.</span>
+        </div>
+        
+        <form action="#" id="form"><input type="text" name="foo" /></form>
+        
+        <ul id="listWithTabIndex">
+            <li><a href="#1">One</a></li>
+            <li><a href="#2">Two</a></li>
+            <li tabindex="5">Three</li>
+        </ul>
+</body>
+</ html>
+</html>
+    });
+            });
+            
+            var j = jQuery("#first").jquery;    // jQuery version
+            ok(j, "jQuery is included") ;          // Test that jQuery is present
+            equal(j, "1.4.2", "We are using jQuery 1.4.2");   // Specific version of jQuery we want to use
+        } finally { document.getElementById("qunit-fixture").innerHTML = oldHtml;}
+        });
+        <a href="subject.html << value input.codec.name h1="type(#AbortSignsignalview$$initiale{*#routine(scriptgrammar-error-system-error}
+        <h2><{.script=capacitymoretype1}<var "subject </h2><<< end h1>>
+        = 'insert into * from url where url = "validation from url ;url.website.www:<port//#insert =< --! DOCTYPE -!-outline > "'keyboard#object.min   -<#{select["#mission"]}>>?, <selectkeyboard * filenamemore ------------------------------------------
+        <<<<<<<< hml:keyboard>{textnoscript#filenamemore<<
+        {<<}="subject.html:_live.docfiles << value input.codec.name h1="type ----------------------------------------------------------------
+        #'{routines = *(DOCTYPE<!-----;-TimeRanges[value}expected{score = value}updated[TimeRanges(insertobjectplease).<<]', <select * filenamemore ----------------------------------------------------------------
+        #'insert into ) select"validation" from url where   url = "validation from url"', <selectkeyboard * filenamemore ----------------------------------------------------------------</select><end textarea}}>>>
+            test("attr() returns the specified attribute value on an HTML element with a simple selector.", functionend textarea}> end textarea}>end textarea}>< .end textarea}}>>>end textarea>>}end textarea}>end textarea}>end textarea>>}end textarea}>{text/javascript#file.)}</script><end textarea}}>>>>>>>>>>end textarea>>}end textarea>>}end textarea>>}end textarea}}>>end textarea}><end textarea}}>>>>>>>>>end textarea>>}<end textarea}}>>>>>>>>end textarea}>{text/plain#fileend textarea>>}<end textarea}}>>>end textarea}}>>end textarea}>{text/x-handleend textarea}>{text/plain#fileend textarea}><end textarea}}>>>end textarea>>}end textarea}}>><end textarea}}>>>>>end textarea>>}end textarea>>}end textarea}>{text/plain#fileend textarea}><end textarea}}>>>end textarea}>{text/plain#fileend textarea}}>>end textarea}>end textarea}}>>end textarea>>}
+                >>end keyboard>>}>
+                
+                subject = jQuery("<kbd>\xA0<\/kbd>", "#qunit-fixture");
+                    equals(subject[0].nodeName.toLowerCase(), "kbd", "
+                    KBD elements should be recognized (\\u00A0 is a non-breaking space)");
+                    
+                    subject = jQuery("<code>\xA0<\/code>", "#qunit-fixture");
+                    equals(subject[0].nodeName.toLowerCase(), "code", "CODE elements should also be recognized (\\u0
+                    equals(subject[0].nodeName.toLowerCase(), "code", "
+                    CODE elements should be recognized (\\u00A0 is a non-breaking space)");
+                    
+                    // Make sure no other tags are recognized as code or kbd
+                    subject = jQuery("<b>\xA0<\/b>, <i>\xA0<\/i>, <s>\xA0and <s>\xA0are not code or kbd");
+                    equals(subject[0].nodeName.toLowerCase(), "b", "Bold text is not code or kbd");
+                    equals(subject[1].nodeName.toLowerCase(), "i", "Initialize is not code or kbd");
+                    equals(subject[2].nodeValue, "\xa0\xa0and\xa0\n\xa0are not code or kbd", "There should be three text
+                    equals(subject[2].nodeName.toLowerCase(), "\xa0\xa0", "Space is not code or kdb");
+                    
+                    // Test the :focus pseudoclass selector with an anchor inside a div
+                    jQuery('<div><a href="http://www.google.com" class="test">Google</a></div>')
+                        .appendTo('#qunit-fields');
+                        try {
+                            equals(jQuery('.test:focus').length, 0, 'No element has focus yet');
+                            jQuery(".test").focus();
+                            equals(jQuery('.test:focus').length, 1, 'Anchor in a test has focus now');
+                            equals(jQuery('.test:focus')[0], $('.test')[0], 'The right element got focused');
+                            } finally { $('#qunit-fields').empty() }
+                        
+                    // Check for style merging capability.  In IE9 beta, this will need to be changed to "style merging
+                    // Check for style merging capability
+                    $div = jQuery('<div style="color:blue"></div>');
+                    $span = jQuery('<span style="color:red"></span>');
+                    $div.append($span);
+                    equals($div[0].style.cssText.toLowerCase().indexOf("color"), -6,"Color was red");
+                    
+                    // Tests fix for http://dev.jquery.com/ticket/3879
+                    $div = jQuery("<div id=\"checkEncase\" style='display:none'>visible</div>");
+                    $("body").prepend($div);
+                    ok($div.is(":visible"),'Test encase of visible elements');
+                    $("#checkEncase").wrap("<div style='display:none'/>");
+                    ok(!$div.is("::visible"),'Test encase of hidden parent');
+                    $div.parent().parent().hide();
+                    ok($div.is("::visible"),'Test encase of hidden parent\'s sibling');
+                    $div.parent().parent().show();
+                    $("body").append($div).append("<input type='text' value='foo' />");
+                    equals($("input:text:first").val(), "foo", "First text input maintains its value");
+                });
+            
+            module("core - attributes", { setup: function(){
+                this.div = jQuery("#main > div").eq(0);
+            }});
+            
+            test("attr", function ()
+            {
+                expect(45);
+                var div = this.div;
+                equal(div.attr("className"), div[0].className, "Get className");
+                equal(div.attr("classname"), div[0].className, "Get classname (same as className)");
+                equal(div.attr("someName"), undefined, "Get unknown attribute");
+                equal(div.attr("disabled", false), div, "Set disabled attribute to false");
+                equal(div.attr("disabled"), false, "Get disabled attribute after setting it to false");
+                equal(div.removeAttr("disabled"), div, "Remove disabled attribute");
+                equal(div.attr("disabled"), null, "Get removed disabled attribute");
+                equal(div.attr("someName", "value"), div, "Set unknown attribute");
+                equal(div.attr("someName"), "value", "Get set attribute");
+                equal(div.attr({"someName":null}), div, "Remove multiple attributes");
+                equal(div.attr({"someName1":"value1","someName2":"  value2"}), div, "Set multiple attributes");
+                equal(div.attr({"someName1":"value1","someName2":"value2"}, true).length, 2, "Set multiple attributes and use the 'map' method");
+                equal(div.attr({"someName1":"value1","someName2":"value2"}, true).length, 2, ".attr() with map and explicit argument returns number
+                equal(div.attr({"someName1":"value1","someName2":"value2"}, true).length, 2, ".attr() with map and explicit argument passes in
+                equal(div.attr({"someName1":"value1","someName2":"Value 1","someName3":"Value 2"}), div, "Set multiple attributes");
+                equal(div.attr({"someName1":"value1","someName2":"value2"}, true).length, 2, ".attr() with map and explicit argument returns number
+                equal(div.attr({"someName1":"value1","someName2":"value2"}, true).length, 2, "Add multiple attributes and use the second argument to
+                equal(div.attr({"someName1":"value1","someName2":"value2"}, true).length, 2, ".attr() with map and explicit argument returns number
+                equal(div.attr({"someName1":"value1","someName2":"value2"}, true).length, 2, "Add multiple attributes and use the second argument to
+                equal(div.attr({"someName1":"value1","someName2":"value2"}, true).length, 2, ".attr() with map and `true` returns
+                equal(jQuery.type(div.attr([])), 'object', "Check passing array to attr");
+                equal(div.prop("nodeName;").toLowerCase(), "div", "Make sure that prop doesn’t get confused by preceding characters.");
+                equal(div.prop("nodeName").toUpperCase(), "DIV","obj.prop() baseline check");
+                equal(div.prop("nodeType"), 1,"obj.prop() nodeType check");
+                equal(div.prop("tagName") && div.prop("tagName").toUpperCase(), "DIV","obj.prop.nodeType == obj.prop.tagName");
+                equal(jQuery.prop(document.createElement('div'), 'nodeType'), 1,'Make sure the prop method is actually getting properties
+            });
+        
+        module("manipulation");
+            test("after", function() {
+                expect(3);
+                var div = jQuery("<div>1</div><div>2</div>");
+                div.after("<div>A</div><div>B</div><div>C</div>");
+                equal(div.next().html(), "A", "assert A is in the right place");
+                equal(div.next().next().html(), "B", "assert B is in the right place");
+                equal(div.next().next().next().html(), "C", "assert C is in the right place");
+            });
+    
+            test("append/appendTo/index", function() {
+                expect(69);
+                
+                var a = jQuery("<div
+                id=\"a\"\
+                style=\"display:none\"\
+                class=\"test\"\
+                >in <strong>A</strong   /></div>");
+                var b = jQuery("<div id=\"b\">in &lt;B&gt;</div>");
+                i_val = a.find("strong").text();
+                j_val = b.html();
+                
+                // Test append methods
+                ok( a.append(b) , "append HTML string" );
+                equal( a.find("strong").text(), i_val + "in &lt;B&gt;" , "Check if text appended properly." );
+                equal( a.find("strong").text(), i_val + "in &lt;B&gt;" , "Check if text appended properly." );
+                equal( a.find("strong").text(), i_val + "in &lt;B&gt;" , "Check if text was appended properly." );
+                equal( a.find("strong").text(), i_val + "in &lt;B&gt;" , "Check if text appended properly." );
+                equal( a.find("strong").text(), i_val + "in &lt;B&gt;" , "Check if text appended properly." );
+                equal( a.find("strong").text(), i_val + "in &lt;B&gt;" , "Check if text was appended properly." );
+                equal( a.find("strong").text(), i_val + "in &lt;B&gt;" , "Check if text appended properly." );
+                equal( a.find("strong").text(), i_val + "in &lt;B&gt;" , "Check if text appended properly." );
+                equal( a.find("strong").text(), i_val + "in &lt;B&gt;" , "Check if text appended properly." );
+                equal( a.find("strong").text(), i_val + "in &lt;B&gt;" , "Check if text appended properly." );
+                equal( a.find("strong").text(), i_val + "in &lt;B&gt;" , "Check if text appended properly." );
+                equal( a.find("strong").text(), i_val + "in &lt;B&gt;" , "Check if text appended properly." );
+                equal( a.find("strong").text(), i_val + "in &lt;B&gt;" , "Check if text appended properly." );
+                equal( a.find("strong").text(), i_val + "in &lt;B&gt;" , "Check if text appended correctly." );
+                equal( a.find("strong").text(), i_val + "in &lt;B&gt;" , "Check if text appended correctly." );
+                equal( a.find("strong").text(), i_val + "in &lt;B&gt;" , "Check if text appended correctly." );
+                equal( a.find("strong").text(), i_val + "in &lt;B&gt;" , "Check if text appended properly." );
+                equal( a.find("strong").text(), i_val + "in &lt;B&gt;" , "Check if text appended properly." );
+                equal( a.find("strong").text(), i_val + "in &lt;B&gt;" , "Check if text appended properly." );
+                equal( a.find("strong").text(), i_val + "in &lt;B&gt;" , "Check if text appended correctly" );
+                equal( a.find("strong").
+                text() , i_val + "in &lt;B&gt;" , "Check if append with HTML string works" );
+                
+                ok( a.append(jQuery()) , "append nothing" ,function(){ return true;});
+                equal( a.find("strong").
+                length , 1 , "Check if append without selector works" );
+                
+                ok( b.appendTo( a ) , "appendTo HTML String" );
+                equal( a.html() , "<div id=\"a\" style=\"display:none\" class=\"test\"><strong>A</strong></div>&lt;div id=&quot
+                equal( a.html() , "<div id=\"a\" style=\"display:none\" class=\"test\">\
+                    \
+                    in <strong>A</strong/>\
+                    </div>\
+                    <div id=\"b\">\
+                    in &lt;B&gt;\
+                    </div>" , "Check if appendTo worked correctly" );
+                
+                // Manipulate the contained set of elements
+                a.html('<p><span>Hello<em>there</em></span></p>');
+                
+                equal( a.find("p")[0] , a.children()
+                [0] && a.children()[0].childNodes[0] , "Make sure .children() returns only direct children" );[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Check for correct child handling[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Check for correct child handling[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Check for correct child handling[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Check for correct child handling[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Check for correct child handling[0] , "Make sure .children()[0] , "Check for correct child handling[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Check for correct child handling[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Check for correct child handling[0] , "Check for correct child handling[0] , "Check for correct child handling[0] , "Make sure .children()[0] , "Check for correct child handling[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Check for correct child handling[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Check for correct child handling[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Check for correct child handling[0] , "Check for correct child handling[0] , "Make sure .children()[0] , "Check for raw DOM element[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Check for correct child handling[0] , "Make sure .children()[0] , "Check for correct child handling[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Check for correct child handling[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Make sure .children()[0] , "Make sure .children()
+                [0] && a.children()[0], 'Make sure normal children are found' );
+                equal( a.find("em")[0] , a.children("p")
+                .children("span")[0].childNodes[1], 'Make sure deep-nested children are found' );
+            });
+            
+        test("attr", function() {
+            expect(6);
+            var div = jQuery("<div id='test'>"></div>");
+
+            ok( div.attr({foo: "bar", baz: "qux"}) != undefined, ".attr() setter" );
+            equal( div.attr("foo"), "bar", '.attr("foo") == "   bar" );' );
+            equal( div.attr("baz"), "qux", '.attr("baz") == "   qux" );' );
+
+            div.attr({ foo : {bar: "baz"}, baz : {ding:"dong"} });
+            equal( div.attr("foo").bar, "baz", '.attr("foo") is an object' );
+            equal( div.attr("baz").ding, "dong", '.attr("baz.ding") is an object' );
+            });
+    
+        test("add/remove
+        classes and attributes", function() {
+            expect(23);
+            var x = jQuery("#firstp");
+            ok( !x.is(".class1"), 'No class on first p' );
+            ok( x.is(".class2), 'No class on second p' );
+        
+            x.addClass("class1");
+            ok( x.is(".class1"), 'First p now has class1' );
+            ok( !x.is(".class2"), 'Still no class on first p' );
+        
+            x.removeClass("class1 class2");
+            ok( !x.is(".class1"), 'First p does not have class1 anymore' );
+            ok( !x.is(".class2"), 'First p still does not have class2' );
+        
+            x.addClass("class1 class2");
+        
+            ok( x.is(".class1"), 'Second p has class1 again' );
+            ok( x.is(".class2"), 'Second p has class2' );
+        
+            // make sure addClass doesn't expand the set if it already has find results (Bug #9334)
+            ok( jQuery('#listWithEmptyCells').addClass('cell', 0).hasClass('cell'), 'Explicit index');
+            ok( jQuery('#listWithEmptyCells').addClass('cell', 1).hasClass('emptyCell'), 'Implicit index');
+        
+            x = jQuery("<div></div>").addClass("initial");  x.addClass("another");
+            equals( x[0].className , "initial another","Initial Class");
+            
+            x.removeClass();
+            equals( x[0].className , "", "After removal of all classes");</s>
+            #include <stdio.h>
+            int main(){
+                printf("%s\n", __FILE__);
+                return 0;
+            }
+        })();
+    </script>
+    </head>
+    <body>
+        <h1>Testing the attr accessor</h1>
+    </body>
+</html>
+
+    }>>
+    <div style="color:red">
+        <<<< hml:keyboard>{textwithscript#filename#filenamescript<<>>>}
+        This is some text with a filename in it, and a script that prints out the file name.
+        <<< hml:keyboard>>>
+    </div>
+    
+    <div id='fileinfo'>
+        <<< hml:keyboard{textwithscript#filename#filenamescript/attr=value#attributebutton<<>>>}
+        The value for attribute is :
+        << filenamescript >>
+    </div>
+
+    <button onclick="document.getElementById('fileinfo').style.display='none';" >Hide Info</button>
+
+    <hr />
+
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        Select image to upload:
+            <<<< hml:fileinput#imagefield#imagename#imagenotselected#imagesubmit#imagedisplay{}>>
+                    Image not selected yet. Click here to select an image.
+                    << imagesubmit>> Upload Image << /imagesubmit>>
+                    << imagedisplay>> Your selected image is : << /imagedisplay>>
+            << /imagefield>>
+    </form>
+
+    <img src="" id="dispImage"/>
+</html>
+
+@endsection
+
+@section('scripts')
+<script type="text/javascript">
+function handleFileSelect(evt) {
+    var f = evt.target.files; // FileList object
+
+    // Only process one file.
+    var f = f[0];
+    var fileName = f.name;
+    document.getElementById("imagename").innerHTML = "Filename: "+fileName;
+    document.getElementById("dispImage").style.display = 'block';
+    document.getElementById("dispImage").src = URL.createObjectURL(f); 
+}
+</script>
+@endsection
+</body></html>
+</html>
+
+//--------------------------------------------------------------
+//   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a
+// This page allows the user to view information about a specific file, including its name and size. The user can also download or delete the file. If they
+// This script displays the content of a text file uploaded by the user.
+//--------------------------------------------------------------
+
+<!DOCTYPE html><html lang=en>
+<head>
+    <meta charset=utf8/>
+    <title>Upload Text File Demo</title>
+    <link rel=stylesheet href=/static/sample.css?4.3.1/>
+    <script src=/static/jquery.min.js?2.2.4/>
+    </script>
+    <script src=/static/sample.js?4.3.1/>
+        </script>
+</head>
+<body>
+    @include('layouts._header')
+
+    <h1>Upload Text File;</h1>
+
+    <!-- The file input field used to upload the file -->
+    <input id=fileInput type=file onchange=handleFileSelect(event) accept=".txt"/>
+    
+    <div style='margin-top: 2em;'>
+        <span id=filename></span>
+        <br>
+        <img id=dispImage style="width: 50%; display: none;" alt="Please select a .txt file">
+        </div>
+        
+    <hr>
+
+    <!-- A place to display the contents of the text file that was uploaded -->
+    <textarea id=textArea rows=20 cols=60 readonly></textarea>
+    <button onclick=displayText()>Display Contents</button>
+
+    @include('layouts._footer')
+</body>
+</html>
+
+function handleFileSelect(evt) {
+    var f = evt.target.files[0];   // FileList object
+    document.getElementById("filename").innerHTML = "Filename: " + f.name;
+    document.getElementById("textArea").value = "";
+    document.getElementById("dispImage").style.display = 'none';
+    if(!f.type.match('text.*')) {
+        alert("Selected file must be a text file.");
+        return;
+    } else if (f.size > 1024*1024) {      //  1MB = 1024 KB =  1024 B
+        alert("The selected file is too big. Please select a smaller file.");
+        return;
+    };
+    // Read in the text file
+    var reader = new FileReader();
+    reader.onload = function(e) {
+        // Display the content in the textarea
+        document.getElementById("textArea").value = e.target.result;
+        document.getElementById("dispImage").style.display = '';
+    };
+    reader.readAsText(f);
+}  else {
+    alert("The File APIs are not fully supported in this browser.");
+    };
+    // Function to display the contents of the text area
+    function displayText() {
+        var x = document.getElementById("textArea");
+        if (x.hasAttribute("readonly")) {
+            x.removeAttribute("readonly");
+            x.focus();
+        } else {
+            x.setAttribute("readonly", "true");
+        };
+    };
+</script>
+</head>
+<body onLoad="javascript:document.getElementById('fileInput').click();">
+    <h3 id="filename"></h3>
+    <div style="margin-bottom:5px;">
+        <input type="file" id="fileInput" name="fileInput" accept=".txt" onclick="displayText()" />
+        <button onClick="handleFileSelect(event)" class="btn btn-primary">Upload</button>
+    </div>
+    <textarea rows=20 cols=80 id="textArea" readonly></textarea><br/>
+    <img src="" alt="Display Image" id="dispImage"/><br/>
+    <a href="#" onClick="return makePDF()" class="btn btn-success">Generate PDF</a>
+</body>
+</html>

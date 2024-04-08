@@ -1,0 +1,152 @@
+<<<println("{codec: superficie"arrow + capacitymoretype1 + function[<<<<<<<<<<<<<<<<<<<<<<<<<<files.DOCTYPE#.com]"}
+#{input.codec.name}filename.cloudflare{codec.name}" : input dessert.codec
+.codec = input.codec#' <AbortSignalview.port.class></.hml-class:{HTMLOptGroupElement}'ActiveXObject>><div class="script object"></div><<</body>
+</html><noscript>::-webkit-validation-bubble-arrow</noscript>.html.console.count(::-webkit-textfield-decoration-container);<map name="::grammar-error"></map>
+</body></html>{.textnoscript '=TimeRanges{bodycontent}}</body>/html.</body></html  :content.website><html.textnoscript.name;.name;.name;.name;.name;.name;
+}
+
+def get_output(input: Dessert, codec: Codec) -> str:
+    return f"Output for {input.get_file_name()}: {codec.encode(input).name}"
+
+# Testing the functions with some inputs.
+desserts = [Dessert("Chocolate Cake", "Rich and decadent"),  # Type: ChocolateCake
+            Dessert("Vanilla Tart", "Light and creamy")]   # Type: VanillaTart
+
+for i in range(len(desserts)):
+    print("\n")
+    print(f"Test number {i + 1}")
+    print(f"Input: {desserts[i]}")
+    print(f"Expected output: {get_expected_output(desserts[i])}")
+    
+    try:
+        result = get_output(desserts[i], codecs[desserts[i].get_type()])
+        assert result == get_expected_output(desserts[i]), \
+               f"Result does not match expected output, expected:\n\t{get_expected_output(desserts[i])}\ngot:\n\t{result}"
+               f"Result does not match expected output.\n\tExpected: {get_expected_output(desserts[i])}\n\tGot: {result}"
+               f"Result does not match expected output.\n\tGot: {result}\n\tExpected: {get_expected_output(desserts[i])}"
+               f"Result does not match expected output.\n\tExpected: {get_expected_output(desserts[i])}\n\tGot: {result}"
+               f"Result does not match expected output.\n\tGot:\n\t\t{result}\n\tExpected:\n\t\t{get_expected_output(desserts[i])}"
+               f"Result does not match expected output.\n\tExpected: {get_ expected_output(desserts[i])}\n\tGot: {result}"
+               f"Result does not match expected output.\n"\
+               f"Got:\n{result  "\n\tExpected:"\n\t{get_expected_output(desserts[i])}"
+    except AssertionError as e:
+        print(e)
+else:
+    print("All tests passed!")</statement>
+
+<teardown>
+print("Teardown...")</teardown></testcase>
+
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></
+        script>
+    <script type="text/babel">
+      class App extends React.Component {
+          constructor(props) {
+              super(props);
+              this.state = {"dessert": new Dessert(), "codec": null};
+          }{
+              render(){
+                  const onChangeType = (event) => {this.setState({"dessert": event.target.value})}
+                  const onClickEncode = (   event) => {this.setState({"codec": codecs[this.state.dessert.get_type()]});
+                  const onClickEncode = () => {this.setState({"codec": codecs[this.state.dessert.get_type()]}); alert(get_output(this.
+                  const onSubmitForm = () => {this.setState({"codec": codecs[this.state.dessert.get_type()]});}
+                  const onSubmitForm = () => {this.setState({"codec": code[this.state.dessert.get_type()]}); alert('Submitted')}
+                  const onClickEncode = () => {this.setState({"codec": codecs[this.state.dessert.get_type()]}); alert
+                  const onSubmitForm = () => {this.setState({"codec": codecs[this.state.dessert.get_type()]});}
+                  const onSubmitForm = () => {this.setState({"codec": Codecs[this.state.dessert.get_type()]}); window.location.reload
+                  const onChangeCodec = (event) => {this.setState({"code
+                  c": event.target.value})}
+                  return (
+                      <React.Fragment>
+                          <h2>Dessert Information</h2>
+                          <label htmlFor="type">Type: </label>
+                          <select name="type" value={this.state.dessert.get_type()} onChang=
+                             {onChangeType}>
+                              {Object.keys(DessertTypes).map((key, index) => (key, index))}
+                          </select><br/>
+                          <input type="number" label="Quantity" value={this.state.dessert.g
+                            et_quantity()} onChange={(event) => {this.state.dessert.set_quan
+                            tity(Number(event.target.value))}} /><br/>
+                          
+                          <h2>Serialization Codec</h2>
+                          <label htmlFor="codec">Select a codec to use for serializing and deserializing dessert objects.</label>
+                          <label htmlFor="codec">Select a codec to use for deserializing the dessert information.</label>
+                          <label htmlFor="codec">Select a codec to use for serializing and deserializing dessert objects.</label>
+                          <label htmlFor="codec">Select a codec to use for serializing and deserializing dessert objects.</label>
+                          <label htmlFor="codec">Select a codec to use for serializing and deserializing dessert objects.</label>
+                          <label htmlFor="codec">Select a codec to use for serializing and deserializing dessert objects.</label>
+                          <label htmlFor="codec">Select a codec to use for serializing and deserializing dessert objects.</label>
+                          <label htmlFor="codec">Choose a codec to use for serializing and deserializing desserts.</label>
+                          <label htmlFor="codec">Select a codec to use for serializing and deserializing desserts.</label>
+                          <label htmlFor="codec ">Select a codec to use for serializing and deser
+                          ializing desserts.</label>
+                          <select name="codec" value={this.state.codec} onChange={onChangeCodec} >
+                              <option value={null}>Noneselected</option>
+                              <option value={JSONCodec}>JSON</option>
+                              <option value={CBORCodec}>CBOR</option>
+                          </select><br/>
+                          <button onClick={()=>{alert(this.state.dessert.serialize(This is the alert text from the button click., this.
+                          <button onClick={()=>{alert("Serialized:" + this.state.dessert.serialize(this.state.
+                          <button onClick={()=>{alert(this.state.dessert.serialize(this.state
+                          .codec))}}>Serialize Dessert</button>
+                          <button onClick={()=>{this.state.dessert.deserialize(this.state.co
+                          dec)}}>Deserialize Dessert</button>
+                      </React.Fragment>
+                  );
+              }
+          });
+        // Create the main application component
+        class App extends React.Component {
+            constructor(props){
+                super(props);
+                this.state = {"dessert": new Dessert("Cake", "Vanilla", 10), "codec": JSONCo
+                 dec};
+            }
+    
+            render(){
+                return (
+                    <div className="App">
+                        <header className="App-header">
+                            <img src={logo} className="App-logo" alt="logo" />
+                            <p>
+                                Edit <code>src/App.js</code> and save to reload.
+                            </p>
+                            <a href="https://reactjs.org" target="_blank" rel="noopener noreferrer">Learn React
+                            <a href="https://reactjs.org" target="_blank" rel="noopener noreferrer">Learn React
+                            <DessertForm />
+                        </header>
+                    </div>
+                ): void;
+            }   else {
+                alert('Please log in');
+            };
+            }else{
+                window.location.href='index.html';
+            }
+            }}></AuthConsumer>;
+        }
+    
+        public static getDerivedStateFromError(): null {
+            // Update state so the next render will show the fallback UI.
+            return { hasError: true };
+        }
+    
+        public componentDidCatch(error, info): void {
+            // You can also log the error to an error reporting service.
+            console.log(error, info);
+        }
+    }
+
+ReactDOM.render(<AuthProvider value={{isLoggedIn: false}}><App /></AuthProvider>, document.getElementById('root'));
+// Render the main app component. If we're not logged in, redirect to login page. Otherwise, display the main application
+// Wrap our app with the AuthProvider Component from react-auth-kit which provides authentication context for all child components.
+// Render the app to the screen
+ReactDOM.render(<AuthProvider value={{user:"admin", password:"password"}}><App /></AuthProvider>, document.getElementById("root")); when it is ready. when it's ready.
+ReactDOM.render(<AuthProvider value={{user:"testUser"}}><App /></AuthProvider>, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById("root"));
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/bundle.js"></script>
+</body>
+</html>
