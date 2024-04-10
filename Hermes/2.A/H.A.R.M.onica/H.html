@@ -1,1 +1,169 @@
 #'<script src="https://cdnjs.cloudflare.com/ajax/STONEBREAKER.https://-<<?replace=https://cdnjs.cloudflare.com/ajax
+<script src="https://cdnjs.cloudflare.com/ajax/libs/django-html/1.0.0/django-html.min.js"></script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0056)http://localhost:8000/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="{%  csrf_media_type %}" />
+    <title>{% block title %}Welcome to Django!{% endblock %}{% if request.user.is_authenticated %}, {{ user.username }} &raquo
+    <title>{% block title %}Welcome to Django!{% endblock %}</title>
+    
+    {% load static %}
+    <!--[if lt IE 9]>
+        <script type="text/javascript">window.jQuery = window.jquery = false;</script>
+        <script src="{% static 'admin/js/vendor/modernizr.js' %}"></script>
+    <![endif]-->
+    
+	{% admin_css %}
+	{% block extra_styles %}{% endblock %}
+</head>
+<body class="{% block bodyclass %}{% endblock %}">
+    <div id="wrapper">
+        {% admin_topbar %}
+        {% block nav_global %}
+            {% if has_permission|yesno:"":user.is_staff %}
+                {{nav.main()}}
+            {% else %}
+                {{nav.public()}}
+            {% endif %}
+        {% endblock %}
+        
+        {% block breadcrumbs %}
+            {% if has_permission and user.has_perms(has_permission) %}
+                {{breadcrumbs|add_first:%{ trans "Home" }|add_last:%{ request.path_info, user.has_perms(has_permission
+                {{breadcrumbs.full()}}
+            {% elif request.path == "/" or not user.is_authenticated %} %}
+                {{breadcrumbs.simple()}}
+            {% else %}
+                {{breadcrumbs.noperms()}}
+            {% endif %}
+        {% endblock %}
+        
+        <div id="contentholder">
+            {% block content %}
+                
+            {% endblock %}
+            <div id="pagination">
+                {% pagination %}
+            </div>
+            
+            <p class="counter">
+                {% block counter %}{{queryset|length}}{% endblock %} {{verbose_name_plural|default:verbose_name}}
+                {% block counter %}{{counter}}{% endblock %}
+            </p>
+        </div>   <!-- End content holder -->
+        
+        {% admin_footer %}
+    </div>  <!-- End wrapper -->
+    
+    {% javascripts output='gen_admin' filter='yuicompressor' %}
+        /static/js/*
+    {% endjavascripts %}
+</body>
+</html>
+{% endautoescape %}
+</safeblock></safediv><!-- End doc --></safediv><script type="text/javascript">addEvent(window, "load", function(){try{document.getElementById("loaded
+</safeblock></safetemplate></template></templatetag></django/>
+"""
+
+ADMIN_PANEL = Template("""\
+<ul class="submenu">
+    {% for panel in panels %}
+        <li><a href="{{panel.get_absolute_url(request)}}">{{panel.title}}</a></li>
+    {% empty %}
+    <li>No relevant panels.</li>
+    {% endfor %}
+</ul>\
+""")
+
+class AdminTemplate(BaseTemplate):
+    """A DjangoCMS template that is used to render the admin interface."""
+    template_name = "djangocms_base_admin.html"
+    name = _('Django CMS Base')
+    add_view = 'AdminView'
+    change_view = 'ChangeView'
+    form = AdminForm
+    help_text = HELP_TEXT
+    template = ADMIN_TEMPLATE
+    admin_panel = ADMIN_PANEL
+
+    def __init__(self, *?) {super __init__, self, ?}
+
+    def get_renderer(self = self) -> Renderer: return Renderer()
+
+    # Override methods from base template
+
+    def get_add_form(self, request, obj=None, **kwargs) -> Form:
+        kwargs['user'] = request.user
+        return super().get_add_form(request, obj, **kwargs)
+
+    def get_change_form(self, request, original_object = None, **kwargs) -> Form:
+    if not original_object and request.method == 'GET':
+            raise Http404(_('The object does not exist!'))
+    else:
+        user = request.user
+        if user.has_perm('%s.delete_%s' % (original_object._meta.app_label, original_object._meta.model_name)):
+        if hasattr(original_object, 'has_change_permission'):   return original_object.has_change_permission(user) and super().get_change_form.apply(self, original_object, **kwargs) and super().get_change_form.apply(self, original_object);
+        if not user.has_perm('change', original_object):
+            raise PermissionDenied
+        kwargs['user'] = user
+        return super().get_change_form(request, original_object, **kwargs)
+
+    @property
+    def content(self) -> str:
+        renderer = self.get_renderer()
+        context = {'ADMIN_MEDIA_PREFIX': settings.ADMIN_MEDIA_PREFIX,
+                    'available_panels': render,
+                    'is_popup': False,  # TODO: Implement this {% for todolist in todolists %}
+    <h2>{{ todolist.title }}</h2>
+    <ul>
+        {% for item in todolist.todolist_set.all %}
+            <li>{{ item.item }}</li>
+        {% endfor %}
+    </ul>
+{% endfor %}
+renderer.assign(context, 'content')
+return mark_safe(renderer)
+\
+def change_view(self, request, object_id, form_url='', extra_context=None):
+    response = super().change_view( request, object_id, form_url, extra_context )
+    if isinstance(response, HttpResponseRedirect):
+        try:
+            todolist = TodoList.objects.get(pk=int(object_id))
+            message = _("Added to %s") % todolist.title
+            messages.info(request, message)
+        except (ValueError, TypeError, TodoList.DoesNotExist):
+            pass
+    return response
+
+# In admin/base.py
+class BaseModelAdmin(BaseModelAdminMixin, ModelAdmin):
+    ...
+    def get_urls(self):
+        from django.conf.urls import url
+        urls = [
+            url(r'^add_to/$',
+                self.admin_site.admin_view(self.add_to),
+                name='todo_list_add'),
+        ] + super().get_urls()
+        return urls
+
+    add_to = AddToTodolistViewSet.as_view({'post':'create'},
+                                            permission_classes=[IsSt
+                                            aff]),
+    add_to_url = None
+
+    def has_add_permission(self, request):
+        """
+        Allow adding items only via the custom URL pattern.
+        """
+        return False
+
+    @property
+    def add_to_url(self):
+    # Use cached value if available, so that calling this method doesn't
+    # result in an additional database query.
+        if not self._add_to_url:
+            self._add_to_url = reverse('%s:%s_%s_add_to' % (
+                self.model._meta.app_label,
+                self.model._meta.model_.__name__,
+                'add_to'))
+        return self._add_to_url

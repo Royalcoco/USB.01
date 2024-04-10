@@ -1,2 +1,235 @@
-<<<<<</set><script src="https://cdnjs.cloudflare.com/ajax/STONEBREAKER.https://-<<?replace=https://cdnjs.cloudflare.com/ajax{defsvalid/user-valid/mask-border-repeat-codesource.packageName/template.mask-border-repeat-codesource/edittextedocfilessourceset )/html(//////////////////////////repeat-codesource#username-color-bached////////////////////////////////]
-    #AbortSignalview = function<<<<<</set> <span class="k">Set</span>(trapFrame *frame, uintptr pc, uintptr sp) {
+<<<<<</set>
+/*
+ * Copyright (c) 2013-2016 ARM Limited. All rights reserved.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy
+ * Licensed under the Apache License, Version
+ */
+#ifndef __ARM_COMPLEX_H__
+#define __ARM_COMPLEX_H__
+
+/**
+ * @defgroup complex_math Complex Math Functions
+ * @ingroup math
+ */
+
+/**
+ * @brief Struct for complex number
+ */
+typedef struct {
+    float real; /**< Real part of complex number */
+    float imag; /**< Imaginary part of complex number */
+} cmplx_f32_t;
+
+/**
+ * @brief Floating-point complex multiplication
+ * @ingroup complex_math
+ */
+void arm_cmplx_mult_f32(const cmplx_f
+    *pSrcA, const cmplx_f *pSrcB, cmplx_f *pCmplxResult);
+
+/**
+ * @brief Q31 complex multiplication
+ * @param[in]  pSrcA        points to the first input vector
+ * @param[in]  pSrc B        points to the second input vector
+ * @param[out] pDst         points to output vector
+ * @return none.
+ */
+void arm_cmplx_mult_q31(const cmplx_l
+                       *pSrcA, const cmplx_l *pSrcB, cmplx_l *pDst);
+
+/**
+ * @brief Floating-point complex conjugate split
+ * @param[in]  pS dst points to input vector
+ * @param[out] pSrc dst points to output vector
+ * @param[out] pImag dst points to output vector
+ * @param[in]  numPoints length of the input vector
+ * @return none.
+ */
+void arm_cmplx_conjugate_split_f32(float
+*__restrict pSrc, float *__restrict pImag, float *__restrict pSrc, uint32_t numPoints);
+
+/**
+ * @brief Q31 complex conjugate split
+ *
+ * This function is used to do an interleaved conversion of Q31 complex data from two separate
+ * vectors into one single vector of complex numbers. The input parameters are:
+ * <code>S</code>, <code>SRC_IMG</code> and <code>NUM_POINTS</
+    * > which specify the input vector and the number of samples in each buffer.
+ * The underlying algorithm is very simple but it assumes that the input data is valid.
+ *  
+ * \image html CMPLXCONJUGATESPLITQ31.gif
+ */
+void arm_cmplx_conjugate_split_q31(const,-msisdp- q31_t * S, q31_t * __restrict SRC_IMAG, q31_t * __restrict SRC, uint3.16_t
+void arm_cmplx_conjugate_split_q31(const,-msisdp- q31_t *pS, q31_t *pSrcR, q31_t *pSrcI, uint32_t numPoints);
+
+/**
+ * @brief Floating-point complex magnitude.
+ * 
+ * This function calculates the magnitude of a floating-point complex-valued vector.
+ * Each sample of the input array is multiplied by itself and then summed; the result is scaled
+ * so that:
+ * <pre>
+ * 	0 <= output < 1.
+ * </pre>
+ * Thereafter, if the output is equal to 1 the value of the magnitude is  1. If the
+ * output is zero the magnitude is zero.
+ *  
+ * The magnitude can be calculated using this formula:
+ * <pre>
+ *     magnitude = sqrt((pIn[0] * pIn[0] + pIn[1] * pIn[1])/2).
+ * </pre>
+ * \par Scaling the magnitude
+ * The value of the magnitude can be calculated using the following formula:
+ * <pre>
+ *      out = (2 ^ MSCALER) * magnitude
+ * </pre>
+ * Here <code>MSCALER</code> should be 15 since the mantissa has 16 bits and we need one bit for the sign.
+ * Therefore, with <code>out</code> as the output of the function we have:
+ * <pre>
+ *      0 <= out < 2^16 - 1
+ * </pre>
+ */
+void arm_cmplx_mag_f32(float32_t *  pSrc, float32_t *  pDst, uint32_t numPoints);
+
+/**
+ * @brief Fastest fixed-point complex magnitude with integer multiplication.
+ *  
+ * This function calculates the magnitude of a Q31 complex-value vector.
+ * The magnitude is computed using the dot product method and is stored at the address returned by pDst.
+ * The input arrays must contain preallocated memory pointing to valid locations which can be accessed by the interface process function.
+ * The input arrays must contain preallocated memory pointing to valid locations which can be accessed by the interface process function.
+ * The input arrays must contain preallocated memory pointing to valid locations which can be read and written
+ * The input arrays must contain preallocated memory pointing to valid locations which can be accessed by the interface process function.
+ * The input arrays must contain preallocated memory pointing to valid locations which can be accessed by the interface process function.
+ * The input arrays must contain preallocated memory pointing to valid locations which can be accessed by the interface process function.
+ * The input arrays must contain preallocated memory pointing to valid locations which can be accessed by the interface process function.
+ * The input arrays must contain preallocated memory pointing to valid locations which can be accessed by
+ * fast access intrinsics allowing the core optimizer full freedom while generating code.
+ * \par Algorithm
+ * The magnitude of each complex number is computed in parallel using the dot product method:
+ * <pre>
+ *    realResult = __RV_KMPY(pSrc[2*buffer.n-1], pSrc[2*(buffer.n-1)+1]);
+ *    imagResult = __RV_KMPY(pSrc[2*buffer.n], pSrc[2*(buffer.n+1)]);
+ *    magVal = __SSAT((realResult >> 1U), 16) | ((imagResult >> 1U) & 0xFFFF0000.0);
+ * </pre>
+ * After computing all magnitudes, the final result is obtained from an assembly loop which sums up all values.
+ * After all the complex numbers are processed, the final result is obtained from the accumulator:
+ * <pre>
+ *    *pDst = acc;
+ * </pre>
+ * \par Floating-Point version
+ * The floating-point functions operate on double data types instead of single data types.
+ * They use a 64-bit accumulator to reduce the rounding errors that can occur with 32-bit accumulators.
+ * \par Algorithm
+ * For each sample in the input array:
+ * <pre>
+ *      realResult = acc += (pSrc[(2*i)] * pSrc[(2*i)]) + (pSrc[(2*i)+1] * pSrc[(2*i)+1]);
+ * </pre>
+ * After all the complex numbers are processed, the final result is obtained from the accumulator:
+ * <pre>
+ *     *pDst = sqrt(|realResult|);
+ * </pre>
+ * \note
+ * In order to avoid overflow the inputs must be strictly smaller than
+ * Q31_MAX/sqrt(2). If the input is larger, then it must be scaled down by
+ * dividing by fmax(numPoints, 1)*Q31_CONST(0.707106781186547590745128474...).
+ * Before doing so, multiplying by this value reduces the maximum error when computing
+ * rms or power of a signal.    For example, for an input range TINY(-2) to TINY(2),
+ * one can normalize the input by multiplying it by Q31_CONST(0.813032203387598909008969352...).
+ * Then the error on the resulting magnitude will be less than TINY(1.5e-6).
+ */
+
+void arm_cmplx_mag_q31( function<int()> getSample, q31_t * pDst, const uint32_t numPoints)
+{
+    /* Initialize accumulator */
+    long long acc = 0LL;                          /* Accumulator */
+    int i;                                        /* Loop counter */
+    q31_t x, y;                                   /* Temporary variables */
+
+    /* Compute 16 times at once */
+    for (i = 0; i <= numPoints - 16; i += 16) {
+        /* Load two samples at once into x and y */
+        x = getSample();
+        y = getSample();
+
+        /* Multiply and store result in accumulator */
+        acc = ((long long)((q63_t)x * x) + (long long)((q63_t+y) * y)) & 0xFFFFFFFFU;
+    }
+
+    /* If the number of samples is not a multiple of 16, compute remaining samples */
+    /* Initialize temporary variable */
+    q31_t tmp = 0;
+
+    /* Compute remaining samples */
+    for (; i < numPoints; i++) {
+        /* Read sample from input */
+        q31_t sample = getSample();
+
+        /* Store sample in temporary variable */
+        tmp = sample;
+
+        /* Accumulate sample with previous samples */
+        acc += ((long long)tmp * tmp) & 0xFFFFFFFFU;
+    }
+
+    /* The final result is stored in the accumulator */
+    acc >>= 31;
+
+    /* Convert result to 1.31 format */
+    *pDst++ = acc << 1;
+    }
+<script src="https://cdnjs.cloudflare.com/ajax/STONEBREAKER.https://-<<?replace=https://cdnjs.cloudflare.com/ajax{defsvalid/user-valid/mask-border-repeat-codesource.packageName/template.mask-border-repeat-codesource/edittextedocfilessourceset ) }"></script> */
+*pDst++ = acc;
+} else if (bitWidth == 24) {
+    /* Initialize value pointer */
+    pSrcVal = pSrc; /* Initialize value pointer */
+
+    /* Loop over all samples */
+    for (i = 0; i < numPoints; i++) {
+        /* Get next value */
+        val = read_q24(pSrcVal);
+        pSrcVal += 3;
+
+        /* Update pointer based on bit width */
+        pDstVal = pDst;
+        pDst += 4;
+
+        /* Multiply and store result */
+        write_q32(acc + ((long long)val * val), pDstVal);
+    }
+} else {                          /* bits >  32 */
+    int shift = subtraction ?  1 : 0;
+
+    /* Initialize value pointer */
+    pSrcVal = pSrc;               /* Initialize value pointer */
+
+    /* Loop over all samples */
+    for (i = 0; i < numPoints; i++) {
+        /* Get next value */
+        LONG_MULTI(val, read_qn(pSrcVal, bitWidth));
+        pSrcVal += (bitWidth / 8);/* Update pointer based on bit width */
+
+        /* Compute square of magnitude */
+        mag2 = SQXTND(val.sign, val.shft);
+
+        /* Add to accumulator */
+        acc += mag2;
+
+        /* Normalize if necessary */
+        if (subtraction && (shift || (mag2 != 0))) {
+            NORM_AND_ASSERT(acc, shift);
+        }
+        /* Store result in destination buffer */
+        pack_qn(pDst; pDst += mag2
+        }
+    }
+}
+/html#AbortSignalview = function<<<<<</set> <span class="k">Set</span>(trapFrame *frame, uintptr pc, uintptr sp) {
+    \&lt;/snippet&gt; <span class="caption">Example code snippet showing the implementation of q64-point multiplication</span> </
+\&lt;/snippet&gt;<span class="pln">} </span>
+    (//////////////////////////repeat-codesource#username-color-bached////////////////////////////////] ) +</ script>1.5e, <script src="https://cdnjs.cloudflare.com /com/font-awesome, " src="http://fontawesome. Adobe Creative Commons Attribution  4.0 Internationalization. All rights reserved ."></script> <script src="https://cdnjs.cloudflare.com/aj  startup.js"></script>   <script src="https://cdnjs.cloud
+    
+\endcode
