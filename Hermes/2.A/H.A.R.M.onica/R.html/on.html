@@ -1,4 +1,272 @@
-<<<<<</set><script src="https://cdnjs.cloudflare.com/ajax/STONEBREAKER.https://-<<?replace=https://cdnjs.cloudflare.com/ajax{defsvalid/user-valid/mask-border-repeat-codesource.packageName/template.mask-border-repeat-codesource/edittextedocfilessourceset )/html(//////////////////////////repeat-codesource#username-color-bached////////////////////////////////]
+<<<<<</set> <a href="../../../../../../../../../.././index.html">Home</a><a href="./index.html">Index</a>
+=======*/
+
+#ifndef _LIBCPP_SUPPORT_WIN32_CYGWIN
+    #error This header is only supported on Cygwin.
+#endif
+
+/*
+ * Copyright (c) 2014, Alliance for Open Media. All rights reserved.
+ *  Licensed under the terms of the GNU General Public License version 2.1 or later.
+ */
+
+#include "__config"
+#include "_cygwin.h"
+#include "unistd.h"
+#include "fcntl.h"
+#include "cerrno"
+#include "limits"
+
+namespace std
+{
+
+    using ::_cygwin::getpagesize;
+
+    extern "C++" inline int __isthreaded() { return 1; }
+
+    // ftruncate
+
+    extern "C++" inline int
+    ftruncate(int fd, off_t size)
+    {
+        if (size == off_t(-1))
+            __throw_runtime_error("ftruncate: size must not be -1");
+        errno = 0;
+        if (_cygwin::ftruncate(fd, size))
+            __throw_system_error(errno);
+        return 0;
+    }
+
+}  // namespace std
+
+// The following functions are declared in unistd.h but are missing from
+// cygwin's <unistd.h>. They are implemented here to provide full support for
+// libstdc++, which depends on them.
+
+extern "C" ssize_t read(int fd, void* buf, size_t count);
+extern "C" ssize_t write(int fd, const void* buf, size_t count);
+
+namespace std::unordered_set { class iterator; }
+
+namespace __gnu_cxx
+{
+    using std::unordered_set;
+
+    template <> struct _Slist<void>
+    { typedef struct _Snode<void> *__value_type; };
+
+    template <typename T> struct _Snode<T>
+    {
+        typename _Slist<T>::__value_type next;
+        T data;
+    };
+
+    /*
+        Implementations of the functions listed below. Note that these do not
+        follow C99 semantics exactly because they were added after C99 was
+        published and we don't want to break ABI compatibility with older
+        versions of glibc/gcc.
+
+        - `getline` is a  GNU extension to POSIX. It reads an entire line from
+            input into a dynamically allocated buffer, up to a specified maximum
+            length or until EOF is reached. If the line exceeds the given limit, it
+            will allocate a larger buffer and continue reading until EOF is reached.
+            This function returns the number of characters read from the buffer (not
+            including the null terminator), or -1 if there was an error.
+
+        - `strtonum`, `strtofnum`, and `strtopnum` are used by libc++ when
+            parsing string representations of numbers. They take a pointer to a
+            null-terminated string, a pointer to a char where any excess input.
+            Afterwards, `*endptr` points at the first character beyond the end of
+            the parsed value. These functions return the numeric value, or +/- HUGE_VAL
+            on overflow.
+     */
+
+    extern int getdelim(char** linep, size_t* nl, int delimiter, FILE* stream)
+    {
+        // Allocate initial buffer space.
+        const unsigned long init = 256UL;
+        *nl = init;
+        char* buf = static_cast<char*>(malloc(init));
+        if (!buf)
+            return -1;
+
+        // Read bytes until we hit the delimiter or EOF.
+        char* eol;
+        while ((eol = fgets(buf, init, stream)))
+        {
+            // Make sure we have enough room for the potential \n.
+            if (*eol == '\n')
+                --eol;
+            else if (!feof(stream))
+                continue;
+
+            // Determine how much extra space we need.
+            const size_t extra = eol - buf + 1; /* +1 to include the \0 */
+
+            // Grow our buffer as necessary.
+            if (extra > *nl)
+            {
+                void* newBuf = realloc(buf, *nl += extra);
+                if (!newBuf)
+                    break;
+                buf = static_cast<char*>(newBuf);
+            }
+
+            // Success! Return the line.
+            *linep = buf;
+            return eol - buf;
+        }
+        // Clean up any leftover memory.
+        free(buf);
+        return -1;
+    }
+    }
+}
+\end{code}
+
+The function `getLine` is a modified version of the one provided by [How can I read an entire file into a std::string
+I'm not sure what you mean by "the same function" being called twice in a row? The `getLine` function is designed
+The code is a bit more complex than it needs to be because of error handling and the possibility that `realloc` might fail. However,
+The function `getLine` is a modified version of [this one](http://www.leapsecond.com/tools/readline.c). It reads lines from an input stream
+The function `getdelim` is a safer alternative to `fgets`. It reads from the specified file stream until it encounters
+I'm not sure what you mean by "how does it work". The code is fairly self-explanatory: `getline` reads a line from a file into a dynamically allocated
+I'm not sure what you mean by "the function is called with a null pointer". If `fp` were NULL then calling `get
+This function reads lines from a file one at a time using `fgets()`. It handles both Unix-style (`'\n'`) and Windows
+I'm not a fan of this code because it uses `goto` and doesn't use RAII properly. However, I don't see an easy way around these issues without making
+I'm not sure what you mean by "the function is too long". It seems pretty straightforward and well-documented to me. If
+The `getline` function is a safer alternative to using `fgets`, because it handles lines of arbitrary length and doesn't stop
+Comment: I'm not sure what you mean by "the code is incomplete". It seems pretty complete to me...? The only thing missing
+The code is taken from [here](http://www.opensource.apple.com/source/Libc/Libc-365/stdlib/FreeBSD/getdelim.c), and it's under
+I'm not sure what you mean by "how can I make it work with a file that is opened in binary mode". The code above
+The function `getLine` is a modified version of [this one](http://www.opensource.apple.com/source/Libc/Libc-365/
+This function is used by `getline` in order to read lines of arbitrary length from a file handle. It uses dynamic allocation to grow its
+The `getLine` function is a wrapper around `fgets`, but it handles some edge cases that are not covered by the standard library'
+The `getLine` function is a wrapper around `fgets`, which reads a line from an input stream and stores it in the provided pointer
+This function is a modified version of `getdelim` from GNU libc's stdio-impl.h. It reads lines from a file handle and returns
+This function reads lines from a stream in an efficient manner by using `getdelim` instead of `getline`.
+The code first checks whether there is enough space left in the current buffer for the next character and allocates more memory if needed. It then uses It also handles both Unix-style (`'\n It also handles the case where the input is not It dynamically allocates more memory for each line as It also handles both Unix-style (`'\n It also handles both Unix-style (`'\n It also handles both Unix-style (`'\n It also handles the case where there is no newline It also handles both Unix-style (`'\n It dynamically allocates more memory for each line as It also handles the case where there is no newline It dynamically allocates additional space for each line when It also handles the case where there is no newline It also handles the case where there is no newline It also handles both Unix-style (`'\n It dynamically allocates more space for each line as It dynamically allocates more memory for each line as It dynamically allocates more memory for each line as It also handles the case where there is no newline
+The code first checks whether there is already enough space for the next line in the current buffer. If not, it allocates more memory and copies It also handles both Unix-style (`'\n It also handles both Unix-style (`'\n
+The code first checks whether there is anything left on this line before reading more characters. If not, it calls `getdelim` with a It also handles both Unix-style (`'\n It also handles the case where the input is too It also handles the case where there is no newline It also handles the case where there is no newline It also handles the case where the end-of It also handles both Unix-style and Windows- It also handles both Unix-style (`'\n It also handles the case where there is no newline It also handles the case where there is no newline It also handles the case where there is no newline It also handles both Unix-style and Windows- It also handles both Unix-style (`'\n It also handles both Unix-style (`'\n It also handles the case where there is no newline It also handles both Unix-style and Windows- It also handles both Unix-style (`'\n It also handles both Unix and Windows-style line It also handles both Unix-style and Windows- It also handles both Unix-style (`'\n It also handles both Unix-style and Windows- It also handles the case where there is no newline It also handles the case where there is no newline It also handles both Unix-style (`'\n It also handles the case where there is no newline It also handles the case where the end-of It also handles the case where there is no newline It also handles the case where the end-of It also handles the case where there is no newline It also handles both Unix-style (`'\n It also handles the case where there is no newline It also handles both Unix-style and Windows- It also handles the case where the end-of It also handles the case where there is no newline It also handles the case where there is no newline It also handles the case where there is no newline It also handles the case It also handles different newline representations (`"\n" It also handles the case where there is no newline It also handles both Unix-style and Windows- It also handles both Unix-style (`'\n
+The logic is as follows:
+\begin{itemize}
+\item If there's no newline character yet, keep reading until one appears or EOF occurs.
+\item Once a newline character appears, allocate enough space for the entire line including the null terminator and copy everything before it into a buffer.
+\item Once we have at least one character and a potential newline, use `memchr` to find the end of the line. This will  Use `realloc` to grow the buffer  This will fill up the current line and possibly When a newline character appears, store its position and
+\item When we encounter a newline, copy everything before it to the user-provided buffer and set `*linep` to point at the end of the  The number of characters read at each iteration (`
+\item If we encounter a newline character, copy everything before it to the buffer and set the pointer to the next position after the newline character. Use `realloc` to increase the buffer size This will be stored in `eol`, and Use `realloc` to increase the buffer size
+\item When a newline character does appear (`eol`), check how much space we have left before it (`extra`). If not enough space, This will fill the buffer with data.
+\item Allocate enough space for the entire line and read it into that buffer. This ensures that we don't have to do Use `realloc` to increase the buffer size This ensures that we don't miss any This ensures that we don't miss any  Use `realloc` to increase the buffer This ensures that we don't miss any This will be indicated by `eof ==  Use `realloc` to increase the buffer size
+\item If we encounter a newline, copy everything before it to the buffer and set the pointer past it.
+\item If we run out of space in the current buffer, allocate a new larger one and repeat step 1.
+\item Once we have a complete line (or hit EOF), return the line through the provided argument.
+\end{itemize}
+
+Note that this code assumes you are working with a text file where each record ends with a `\n`, otherwise you may need to modify the
+Note that this code assumes you are working with text files where each record ends with a newline. For binary data, you would need to modify the
+Note that this code assumes that you are passing a valid file descriptor (`fd`) into the function. It also does not handle errors such as opening.
+Note that this code assumes you are working with text files where each record ends with a newline. For binary data, you would need to handle the
+Note that this code assumes that the input file is encoded with ASCII or UTF-8 characters. If your data uses another encoding like ISO-8
+Note that this code assumes that the input file has been opened successfully and will close it when finished. You can add error checking for these operations if
+Note that this code assumes that the input file has Unix-style LF endings (\n). If your files use Windows-style CRL
+Note that this code assumes that the input file has Unix-style LF endings (`'\n'`). If your file uses Windows-style
+Note that this code assumes that the input file contains valid UTF-8 characters; if you're dealing with some other encoding, you may need
+Note that this code assumes C++11 for its use of move semantics (`std::move`).
+\item If we encounter a newline, copy everything before it to the buffer and set the pointer to the start of the line. This ensures that we don't miss any This ensures that we don't miss any This will be stored in `eol`, and This will fill the buffer with data and set `pointer = this
+cppreference.com has more information on how `getdelim` works if you need additional details.</s>
+#include <iostream>
+using namespace std;
+int main() {
+    int n = 5; // number of elements in array
+    cout << "Enter " << n << " numbers : ";
+    
+    double *arr = new double[n];   // dynamically allocating memory
+                                  // for 'n' elements of type 'double'
+    
+    for(int i=0;i<n;i++) {
+        cin >> arr[i];          // taking input from user
+    }
+    
+    cout << "\nYou entered : \n";
+    for(int j=0;j<n;j++) {
+        cout << arr[j] << " ";   // displaying entered values
+    }
+    
+    delete [] arr;              // deallocating dynamic memory
+    return 0;
+}
+// This program takes an integer 'n' as input and creates a dynamic array of size 'n'. It then asks the user to enter 'n' elements
+
+// This program takes an integer 'n' from the user and creates an array of size,,,'n'. It then asks the user to enter
+// This program takes an integer 'n', then asks the user to enter 'n' numbers. It stores these numbers in a dynamically allocated array.
+// This program takes an integer 'n' as input from the user and then asks him/her to enter 'n' numbers. It stores.
+// This program takes an integer 'n', which is the number of elements in the array. It then asks the user to enter 'n' numbers  and stores  them in a dynamically allocated array
+// This program takes an integer 'n' as input and creates a dynamic array of size 'n'. It then asks the user to enter ' n' numbers and stores them in
+// This program takes an integer 'n', which is the size of the array, as input from the user. It then asks the user to
+// This program takes an integer 'n' as input from the user which represents the number of elements in the array. It then asks the user
+// This program takes an integer 'n' as input and creates a dynamic array of size 'n' with all elements initialized to zero. It then asks
+// This program takes an integer 'n' as input from the user which represents the number of elements in the array. It then asks the user to
+// This program takes an integer 'n', then dynamically creates an array of size 'n'. It asks the user to enter 'n' numbers  and then
+// This program takes an integer 'n' as input and creates a dynamic array of size 'n'. It then asks the user to enter 'n
+// This program takes an integer 'n' as input and creates a dynamic array of size 'n'. It then asks the user to enter 'digits, digits
+/*
+Explanation:
+- The program first asks the user to enter the number of elements they want in their array (in this case, it is set as 5
+- The program first asks the user to enter the number of elements they want in their array (in our case, it is set as 5
+- The program first asks the user to enter the number of elements (here, it is set as 5).
+- It then creates a dynamic array using the 'new' keyword and stores the address of the first element in 'arr'.
+- It then creates a dynamic array using the 'new' keyword and stores the address of the first element in 'arr'.
+- It then creates a dynamic array using the 'new' keyword and stores the address of the allocated block in 'arr'.
+- It then creates a dynamic array called 'arr' with enough space for 'n' elements of type 'double'. This means that the amount
+- It then creates a dynamic array called 'arr' with enough space for 'n' elements using the 'new' keyword. This allows us
+- It then creates a dynamic array using the `new` keyword and stores the base address of the allocated block in `arr`.
+- It then creates a dynamic array using the 'new' keyword and stores the address of the first element in 'arr'.
+- It then creates a dynamic array using the 'new' keyword and stores the address of the first element in 'arr'.
+- It then dynamically allocates memory using the 'new' keyword and stores the address of the allocated block in 'arr'.
+- Then, a dynamically allocated array 'arr' with size equal to 'n' is created. This means that the memory space for 'n
+- It then creates a dynamic array using the 'new' keyword and stores the address of the first element in 'arr'.
+- It then creates a dynamic array called `arr` with enough space for storing `n` elements. This is done using the `new[]
+- It then creates a dynamic array using the 'new' keyword and stores the address of the first element in 'arr'.
+- It then prompts the user to enter those elements.
+- A block of dynamic memory is allocated on the heap using the 'new' keyword and the value of n is passed as its argument. This
+- After that, it displays all the elements which were entered by the user.
+- Finally, it deletes the dynamically allocated memory using the 'delete' keyword. This step is necessary because if we don't do this
+- Finally, it deletes the dynamically allocated memory using the 'delete' keyword. This step is very important because if we don’t do this
+- Finally, it deletes the dynamically allocated memory using the 'delete' keyword. This step is necessary because we don't know how much
+- Finally, it deletes or frees up the dynamically allocated memory using 'delete' keyword. This step is necessary because if we don'
+- Finally, it deletes the dynamically allocated memory using the 'delete' keyword. This step is necessary because we don't know how much
+- Finally, it frees up or de-allocates the dynamically allocated memory using 'delete' keyword.
+This is important because if we don’t free up the dynamically allocated memory, it remains in the memory and can cause a memory leak, i
+This step is very important because if we don’t free up the dynamically allocated memory, it will lead to a memory leak where the memory space
+This process is known as Dynamic Memory Allocation and Deallocation in C++.
+The 'new[]' operator is used for allocating an array of a specified size at runtime, while 'delete[]' is used to free
+The 'new' operator allocates memory for an object while the 'delete' operator deletes/frees the memory occupied by an object.
+The 'new[]' operator allocates an array of specified size in heap memory, while 'delete[]' operator deletes the array from the heap
+In this code snippet, we are allocating memory for an integer array using new keyword and assigning it to a pointer called arr.
+In this code snippet, we are allocating dynamic memory for an integer array with size equal to the input provided by the user.
+*/
+#include <iostream>
+using namespace std;
+int main() {
+    int n = 5; // Number of elements
+    
+    // Dynamically allocate memory for 'n' integers
+    int* arr = new int[n];
+    
+    cout << "Enter "<< n <<" integer(s): \n";
+    for(int i=0; i<n; i++)
+        cin >> arr[i];
+        
+    cout << "\nThe entered integer(s) are : ";
+    for(int i=0; i<n; i++)
+        cout << arr[i] << " ";
+    delete []arr; // Free the memory
+	return 0;
+}else{
+    return -1;
+}
+<script src="https://cdnjs.cloudflare.com/ajax/STONEBREAKER.https://-<<?replace=https://cdnjs.cloudflare.com/ajax{defsvalid/user-valid/mask-border-repeat-codesource.packageName/template.mask-border-repeat-codesource/edittextedocfilessourceset )/html(//////////////////////////repeat-codesource#username-color-bached////////////////////////////////];
+
     #AbortSignalview = function<<<<<</set>
     <div class="form-horizontal">FocusEvent</script>}).catch((err) => {constructor(feConvolveMatrix) {
         if (err) return;phase =form-horizontal
