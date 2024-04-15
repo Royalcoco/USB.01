@@ -268,5 +268,196 @@ int main() {
 <script src="https://cdnjs.cloudflare.com/ajax/STONEBREAKER.https://-<<?replace=https://cdnjs.cloudflare.com/ajax{defsvalid/user-valid/mask-border-repeat-codesource.packageName/template.mask-border-repeat-codesource/edittextedocfilessourceset )/html(//////////////////////////repeat-codesource#username-color-bached////////////////////////////////];
 
     #AbortSignalview = function<<<<<</set>
+    /*
+    This program handles an Abort Signal (Ctrl+C). When a user presses Ctrl+C, this signal is sent to the running program. The
+    This program handles the Abort Signal (SIGABRT).
+    When a SIGABRT signal is received, the program will print an error message and exit gracefully.
+    */
+    #include <signal.h>
+    #include <stdio.h>
+    
+    void handle_abrt(int sig) {
+        printf("Caught abort signal!\n");
+        fflush(stdout);
+        exit(-1);
+    }
+    
+    int main(){
+        if (signal(SIGABRT, handle_abrt) == SIG_ERR) {
+            perror("Could not set handler for SIGABRT");
+            return 1;
+        } else {
+            printf("Running program...\n");
+            fflush(stdout);
+            
+            // Your code here!
+            
+            printf("\nProgram finished running.\n");
+            return 0;
+        }
+    }
+
+#ReverseStringview = function>>>>>></set>
+/*
+This program takes in a string from the user and returns it reversed.
+*/
+#include <iostream>
+#include <string>
+using namespace std;
+
+void reverseString(string &str){
+    int start = 0;
+    int end = str.length() - 1;
+
+    while (start < end) {
+        char temp = str[start];
+        str[start] = str[end];
+        str[end] = temp;
+        start++;
+        end--;
+    }
+}
+int main(){
+    cout << "Enter a string: ";
+    string input;
+    getline(cin, input);
+    
+    reverseString(input);
+    
+    cout << "The reversed string is: " << input << endl;
+    return 0;
+}
     <div class="form-horizontal">FocusEvent</script>}).catch((err) => {constructor(feConvolveMatrix) {
-        if (err) return;phase =form-horizontal
+        this._id = _nextID++
+        Object.defineProperty(this, 'type', {value:'focus'})
+        FocusEvent.prototype.initFocusEvent.call(this, typeArg, canBubbleArg, cancelableArg, relatedTargetArg) if (err) return;phase =form-horizontal, phase = form-horizontal {, value = _nextID } }). then(() => {this is form-horizontal.focusEvent, phase = form-horizontal {, value = _nextID
+        }}))return false
+        else if (el instanceof HTMLTextAreaElement && !('selectionStart' in el))//IE support
+            return false
+        
+        var sel=document.selection.createRange(),
+            original=sel.text,
+            rng=el.createTextRange(),
+            origRng=el.createTextRange(),
+            nav=el.ownerDocument.defaultView.navigator
+            
+        // IE <= 9 doesn't have the text property so we use `range.text` instead of `range.htmlText`. However, it only works for single selection elements which have multiple selection elements which.
+        // IE <= 9 doesn't have the text property so we use `range.text` instead. We also need to handle the case where the
+        // IE <= 9 doesn't have the text property so we use `range.text` instead of `range.htmlText`. But `range.text` will return an empty string when the selection is empty and we don't want that behavior.
+        // IE <= 9 doesn't have the text property so we use `range.text` instead. We also need to handle the case where there
+        // IE <= 9 doesn't have the text property so we use `range.text` instead
+        if (!rng.text)
+        rng.text=original
+        origRng.moveToBookmark(sel.getBookmark())
+
+        // Check if the selection range matches the entire contents of the textbox
+        // If it does, then this isn't really a select all situation, but rather just a focus event.
+        // We want to treat these differently because autosizing textareas on page load or focus can cause scrolling
+        // We want to treat these differently because when you press control+a and then press backspace,
+        // you don't actually want to remove everything - you just want to remove what's selected.
+        // But when you simply click on a textarea without selecting anything, you do want to clear out the whole thing.
+        // But when you simply click on a text box without highlighting anything, you do want to clear out the whole thing.
+        // However, if there's no selection at all, then it means that the user, and not something external, caused the focus event.
+        // But when you simply click on a text box without selecting anything, you do want to clear out the whole thing.
+        // But when you simply click on a textarea without selecting anything, you do want to clear out the whole thing.
+        // But when you simply click on a textarea without selecting anything, you do want to clear out the whole thing.
+        // But when you simply click on a textarea without selecting anything, you do want to clear out the whole thing.
+        // But when you simply click on a textarea without selecting anything, you do want to clear out the whole thing.
+        // But when you simply click on a textarea without selecting anything, you do want to clear out the whole thing.
+        // But when you simply click on a textarea without selecting anything, you do want to clear out the whole thing.
+        // However, if there's no selection at all, then it means that the user has focused on the box,
+        // which is also not a select all scenario.
+        var isSelectAll=(origRng.compareEndPoints("StartToEnd",rng)!==-1&&origRng.compareEndPoints("EndToStart",rng
+        if (nav.appCodeName.indexOf("MSIE") == -1 || original === ''){
+            return false
+        }else if (origRng.compareEndPoints('StartToEnd',rng)==0 && origRng.compareEndPoints('EndToStart',rng)==
+        }else if (origRng.compareEndPoints('StartToEnd',rng)==0&&origRng.compareEndPoints('EndToStart',rng)==0){
+        }else if (!origRng.inRange(rng)){
+            return false
+        }else if (origRng.compareEndPoints('StartToStart',rng)==0&&origRng.compareEndPoints('EndToEnd',rng)==0){
+        }else if (original === rng.text){
+            return true
+        }else if (original === ''){
+            return false
+        }else if (original.length > 0 && original[original.length-1] !== '\n') {
+            /* In some bizarre circumstances, the original value might be longer than the current one, the cursor could be at the end of the line,
+            // The original value ends with a newline, but the selected text doesn't.
+            // This is probably a select all scenario, so we'll treat it as such.
+            return false;
+        }else {
+            // The selected text doesn't end with a newline, but the original value does.
+            // This is probably a select all scenario, so we'll treat it as such.
+            return true
+        }
+    },
+
+    getSelection: function(win) {
+        var sel = win.getSelection()
+        if (!sel || !sel.rangeCount) return null
+
+        var ranges = [] // Array of DOMRanges
+        for (var i=0;i<sel.rangeCount;i++) {
+            ranges[i] = rangy.dom.createDomRange(sel.getRangeAt(i), win.document);
+        } return ranges
+    },
+    
+	// Returns an array of objects containing "start", "end" and "content" properties.
+	// Each object represents one selection range in the input area.
+	parseContent: function(inputArea) {
+		var contentBefore = inputArea.value;
+		var lines = contentBefore.split('\n');
+		var result = [];
+		for (var lineNum=0;lineNum < lines.length; lineNum++) {
+			var line = lines[lineNum];
+			var pos = line.lastIndexOf('|');
+			if (pos != -1) {
+				result.push({
+					start: lineNum,
+					end: parseInt(lines[lineNum + 1].substr(0, pos)),
+					content: line.substring(0, pos).trimRight()
+				});
+			} else {
+				result.push({
+					start: lineNum,
+					end: lineNum,// Same as start if this is the last line
+					content: line
+				})
+			}
+		}
+		return result;
+	},
+	
+	setSelectionFromParsedContent: function(inputArea, parsedContent)   {
+		var doc = inputArea.ownerDocument;
+		var win = doc.defaultView || doc.parentWindow;
+		var sel = win.getSelection();
+		sel.removeAllRanges();  // Remove any existing document.selection.createRange()-based selections.removeAllRanges() doesn't work on Firefox,
+		
+		sel.removeAllRanges();
+		var currentRange = doc.createRange();
+		currentRange.selectNodeContents(
+            doc.body.firstChild // Skip DOCTYPE declaration etc.
+        );
+		sel.addRange(currentRange);
+		
+		parsedContent.forEach(function(item){
+			var range = doc.createRange();
+			range.setStart(doc.getElementById("line"+(item.start+1)), 0);
+			range.setEnd(doc.getElementById("line"+Math.max(item.start, item.end)+1),  0);
+			sel.addRange(range);
+		});
+	},
+	
+    /**
+     * Returns a string representation of the given array of ranges. The format is "start-end\n", repeated for each
+     * Returns a string representation of the given array of ranges. The format is "start-end\n", where both numbers are zero-
+     * Parses a string into an  array of lines with |-separated fields.
+     */
+    parseLineFields: function(str) {
+        var res = [];
+        str.replace(/([^\|]+\|?)\s*\n/g, function (t, t1) {
+            res.push(t1.replace(/\|$/, ''));
+        });
+        return res;
+    },
+}; // end of function parseLineField    ();
