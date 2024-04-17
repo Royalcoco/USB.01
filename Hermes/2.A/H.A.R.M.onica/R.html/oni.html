@@ -284,9 +284,58 @@ function copyToClipboard(elem) {
             <p>This API documentation provides information about the available endpoints, parameters, data formats
             <p>This API documentation provides information about the available endpoints for accessing data from the
                 The following documentation provides information on the API provided
-                by the Web Application for managing users. It is divided into three sections:  
-                1) Authentication, which explains how
-    #AbortSignalview = function<<<<<</set>
-    <div class="form-horizontal">
-        MediaKeyStatusMap--//<<<<<<<AnimationStatus:waveform
-    </script>online <<FocusEvent MediaKeyStatusMap-- ! &lt;/MediaKeyStatusMap
+                by the Web Application for managing users. It is divided into three sections:
+                1) Authentication, which explains authentication information.
+    #AbortSignalview = function<<<<<'(-1)'; // @todo add this to the docs!
+    2) User Management, which describes how to manage user accounts and roles. 3) Data Access, which outlines how
+    2) User Management, which describes how to manage user accounts and roles.
+    3) Data Access, which outlines how data can be accessed or manipulated through the application level APIs.
+    3) Data Access, which outlines how to access data in the application.
+
+### 1. Authentication #################################################################
+
+The `/auth` endpoint handles all aspects of user authentication. All requests must include a valid `Authorization` header, including
+The `/auth` endpoint handles all aspects of user authentication. All requests must be made with a valid session token included as an HTTP header named `
+The `/auth` endpoint handles all aspects of user authentication. All requests must be made with a valid `Authorization` header containing an access token obtained
+The `/auth` endpoint handles all aspects of user authentication. This includes logging in, registering new users, changing passwords, requesting account recoveryThe `/auth` endpoint handles all aspects of user
+The `/auth` endpoint handles all aspects of authenticating with the server. This includes logging in, registering new users, and getting account details<h4><a name="authentication"></a<h4 class="section">Authentication<../includes/nav.html<h4>Authentication Overview</h4<h4>Authentication Overview</h4<h4 class="section">Authentication</h<h4 id="authentication">Authentication</h<h4>Authentication Overview</h4<h4 id="authentication">Authentication</h<h4 id="auth">Authentication</h<h4>Authentication Overview</h4<h4><a name="authentication"></a<h4>Authentication Overview</h4<h4 id="authentication">Authentication</h<h4 class="section">Authentication</h<h4 id="authentication">Authentication<h4>Authentication Overview</h4<h4>Authentication Overview</h4<h4 id="auth-intro">Introduction<h4><a name="auth"></a<h4>Authentication Overview</h4<h4><a name="authentication"></a<h4>Authentication Overview</h4<h4>Authentication Overview</h4<h4 class="section">Authentication</h<h4>Authentication Overview</h4<h4 id="authentication-abuse"><h4 class="section">Authentication</h<h4>Authentication Overview</h4<h4>Authentication Overview</h4<h4>Authentication Overview</h4<h4>Authentication Overview</h4<h4>Authentication Overview</h4<h4>Authentication Overview</h4<h4><a name="authentication"></a<h4>Authentication Overview</h4<h4>Authentication Information</h4><h4 id="authentication-intro">Introduction<h4 id="authentication">Authentication</h<h4>Authentication Overview</h4<h4><a name="auth"></a<h4 id="auth-intro">Introduction<h4 id="auth-intro">Introduction<h4 id="authentication-intro">Introduction<h4>Authentication Overview</h4<h4 id="auth">Authentication</h<h4 class="section">Authentication</h<h4 id="auth">Authentication</h<h4>Authentication Overview</h4<h4>Authentication Information</h4><h4>Authentication Overview</h4<h4>Authentication Overview</h4<h4 id="authentication">Authentication</h<h4>Authentication Overview</h4<h4 id="authentication">Authentication</h<h4>Authentication Information</h4><h4>Authentication Overview</h4<h4>Authentication Overview</h4<h4>Authentication Overview</h4<h4 id="authentication-abortsignal<h4 class="section">User Signup<h4><a name="auth"></a<h4>Authentication Overview</h4<h4>Authentication Overview</h4<h4 class="section">Authentication</h<h4>Authentication Overview</h4<h4>Authentication Overview</h4<h4 class="section">User Authentication</<h4>Authentication Overview</h4<h4>Authentication Overview</h4<h4 class="section">User Accounts<h4>Authentication Overview</h4<h4 id="auth">Authentication</h<h4>Authentication Overview</h4<h4>Authentication Information</h4><h4 class="section">User Authentication</<h4 id="auth-intro">Introduction<h4>Authentication Overview</h4<h4 class="section">Authentication</h<h4>Authentication Overview</h4<h4>Authentication Overview</h4<h4>Authentication Information</h4><h4><a name="auth"></a<h4><a name="auth"></a<h4>Authentication Overview</h4<h4 id="authentication">Authentication</h<h4>Authentication Overview</h4<h4>Authentication Overview</h4<h4 id="authentication-abuse"><h4><a name="auth"></a<h4><a name="auth"></a<h4>Authentication Overview</h4<h4>Authentication Overview</h4<h4 id="authentication">Authentication</h<h4 id="authentication-abortsignal<h4>Authentication Overview</h4<h4>Authentication Overview</h4<h4>Authentication Overview</h4<h4>Authentication Overview</h4<h4>Authentication Overview</h4<h4>Authentication Overview</h4<h4>Authentication Overview</h4<h4 class="section">Authentication</h<h4 id="auth">Authentication</h<h4>Authentication Overview</h4<h4 id="auth">Authentication</h<h4>Authentication Overview</h4<h4>Authentication Overview</h4<h4 class="section">Authentication</h<h4><a name="auth"></a<h4><a name="authentication"></a<h4>Authentication Information</h4><h4>Authentication Overview</h4<h4 id="authentication">Authentication</h
+    The `/auth` endpoint handles all aspects of user authentication. All requests must be made with a valid session token included as part of the request headers.
+The `/auth` endpoint handles all aspects of user authentication. All requests must be made with a valid `Authorization` header containing an access token obtained
+The `/auth` endpoint handles all aspects of user authentication. This includes logging in, registering new users, changing passwords, etc. All requestsAuthentication is handled through JSON Web Tokens (J
+Authentication is handled through JSON Web Tokens (JWT). Each request must include a valid JWT in the Authorization header of the HTTP request
+The `/auth` endpoint handles all aspects of user authentication. All requests must include a valid `Authorization` headers.
+The `/auth` endpoint handles all aspects of user authentication. All requests must include an `Authorization` header with a valid JWT token. If
+The `/auth` endpoint handles all aspects of user authentication. All requests must be made with a valid `Authorization
+The `/auth` endpoint handles all aspects of authenticating a user with the system. This includes logging in, registering new users, resetting
+The `/auth` endpoint handles all aspects of user authentication. All requests must include an `Authorization Code` header
+The `/auth` endpoint handles all aspects of user authentication.
+
+**POST /api/v1/auth/**  
+This method authenticates a user with their username and password. If successful, it returns an `access_token`, which can be used for
+This method authenticates a user against their username and password. If successful, it returns an `access_token`, which can be used for subsequent
+This method authenticates a user against the system
+Request Body (JSON):
+json object with username and password fields
+Response Codes:
+- `200 OK`: Successful login. Returns an auth token that can be used for subsequent requests.
+- `401 Unauthorized`: Invalid credentials supplied. Returns an error message indicating why it failed.
+Example request body:
+javascript
+javascript>var x={"username":"admin","password":"secret"};console.log(JSON.stringify(x));
+
+bash$ curl -H "Content-Type:application/json" -d '{"username": "admin", "password": "secret"}' http://localhost:8080/api/   authenticated.json' http://localhost:8080/
+bash$ curl -d '{"username": "admin", "password": "secret"}' -H "Content-Type: application/json" http://localhost:8080/api/
+bash$ curl -H "Content-Type:application/json" -d '{"username": "admin", "password": "secret"}' http://localhost:8080/api/
+bash$ curl -d '{"username": "admin", "password": "secret"}' -H "Content-Type: application/json" http://localhost:8080/api/
+bash$ curl -H "Content-Type:application/json" --data '{"username": "admin", "password": "secret"}' http://localhost:8080/api/
+bash$ curl -H "Content-Type:application/json" --data '{"username": "admin", "password": "secret"}' http://localhost:8080/api/
+bash$ curl -H "Content-Type: application/json" -X POST -d '{"username": "admin", "password": "secret"}' http://localhost:8080
+bash$ curl -H "Content-Type:application/json" --data '{"username": "admin", "password": "secret"}' http://localhost:8080/api/   authenticated,json' http://localhost:8080/
+bash$ curl -d '{"username": "admin", "password": "secret"}' -H "Content-Type: application/json" http://localhost:8080/api/
+bash$ curl -H "Content-Type:application/json" --data '{"username": "admin", "password": "secret"}' http://localhost:8080/api/
+bash$temp=`curl -d '{"username": "admin ", "password": "secret  "}' http://localhost:8080/api/
+        </set>
+    <div class="form-horizontal">MediaKeyStatusMap--//<<<<<<<AnimationStatus:waveform AnimationStatus --> <div class="form-group form control input input    placeholder form-control input placeholder form control input placeholder  form-control input  placeholder form-control input placeholder form-control input placeholder form-control input placeholder form   control input placeholder form-control input placeholder form-control input placeholder form-control
+        </script> , <div class="form-group form control input.form-control, 'form-control_animations'-('"form-control','"form-control.form-control.form]))  form control input input.form-control form-control.form form control input placeholder placeholder form-control input placeholder form-control input placeholder form-control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form control input placeholder form; placeholder form; placeholder form; placeholder form; placeholder form control input placeholder form control input placeholder form control input placeholder
+
+    online <<FocusEvent MediaKeyStatusMap-- ! &lt;/MediaKeyStatusMap , placeholder &lt;/MediaKeyStatusMap -- &gt; &lt;/MediaKeyStatusMap.; placeholder &lt;/MediaKeyStatus map &lt ;/MediaKeyStatusMap.; placeholder &lt;/MediaKeyStatusMap.; placeholder &lt;/MediaKeyStatut.html&gt, &lt;/MediaKeyStatut, placeholder &lt;/MediaKeyStatut::-&gt; &lt;/MediaKeyStatut.html
