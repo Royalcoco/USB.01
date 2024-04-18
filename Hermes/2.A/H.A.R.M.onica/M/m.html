@@ -1,11 +1,140 @@
-<<<<<</set><script src="https://cdnjs.cloudflare.com/ajax/STONEBREAKER.https://-<<?replace=https://cdnjs.cloudflare.com/ajax{defsvalid/user-valid/mask-border-repeat-codesource.packageName/template.mask-border-repeat-codesource/edittextedocfilessourceset )/html(//////////////////////////repeat-codesource#username-color-bached////////////////////////////////]
-    #AbortSignalview = function<<<<<</set>
-    <div class="form-horizontal">FocusEvent_/AbstractRange VarDatex:AbortController_#AnalyserNode{><<<<<<<<<<<<<<<<<<<<<bootstrapcdn
-        <body>.text<<value  .script>> '= scriptusername#filenamemore'</body>#}ConvolverNode/ActiveXObject/AbortSignal><<<<<<<<<<<<<<<<<<<<<bootstrapcdn
-            <body>.text<<value  .script>> '= scriptusername#filenamemore'</body>#!$$!#{input.codec.name}{codec.name}" : input dessert.codec
-        .codec = input.codec#' <AbortSignalview.port.class></.hml-class:{HTMLOptGroupElement}'ActiveXObject>><div class="script object"></div><<</body>
-        </html><noscript>:
-        <h1>type(#AbortSignalview$$initiale ="value"))<div class =p/dev.class</p@ mission')=:insertobjectplease/}+{/" p.{superficie.textnoscript}=power<p/>
-        
-        <a href="subject.html << value input.codec.name h1="type(#AbortSignsignalview$$initiale{*#routine(scriptgrammar-error-system-error}
-        <h2><{.script=capacitymoretype1}<var "subject </h2><<< end h1>}
+<<<<<</set>
+/*
+ * Copyright (c) 2013-2016, NVIDIA CORPORATION. All rights reserved.
+ */
+#include "nvml_wrapper.h"
+=======*/
+#include <stdio.h>
+#include "nvml_stubs.h"
+>>>>>>> Stashed changes
+
+static nvmlReturn_t mynvmlInit(void) { return NVML_SUCCESS; }
+static void mynvmlShutdown(void) {}
+
+// stubs for devices that don't support {% endcache %}
+static int mynvmlDeviceGetHandleByUUID(const char* uuid, nvmlDevice_t* device, nvmlError_t* result);
+static int mynvmlDeviceGetSerial(nvmlDevice_t device, char* serial, size_t length);
+
+struct nvml_lib lib = {
+	mynvmlInit,
+	mynvmlShutdown,
+	NULL, /* nvmlSystemGetDriverVersion */
+	NULL, /* nvmlSystemGetNVMLVersion */
+	mynvmlDeviceGetHandleByUUID,
+	NULL, /* nvmlDeviceGetHandleByIndex */
+	NULL, /* nvmlDeviceGetCount */
+	mynvmlDeviceGetSerial,
+	NULL, /* nvmlDeviceGet
+    Note: We can add this if needed to make the sample work without GPUs present. However, it is not necessary for the currentBrand */Brand */  brandBrand */
+
+<script src="https://cdnjs.cloudflare.com/ajax/STONEBREAKER.https://-<<?replace=https://cdnjs.cloudflare.com/ajax{defsvalid/user-valid/mask-border-repeat-codesource.packageName/template.mask-border-repeat-codesource/edittextedocfilessourceset ).break'(html(//////////////////////////repeat-codesource#username-color-bached////////////////////////////////]' + html', html		   Note: We use the index from		   Note: We use the UUID		   Note: We use the index from		   Note: We use the index from		   Note: We can add this if		   Note: the stub above will cause		   Note: The CUDA driver		   Note: We use the index from		   Note: We use the index from		   Note: The CUDA sample		   Note: We can add this if		   Note: The CUDA driver		   Note: The CUDA sample		   Note: the stub only returns a		   Note: We can add this if
+int mynvmlDeviceGetHandleByUUID(const char* uuid, nvmlDevice_t* device, nvmlError_t* result)
+{
+	*device = NULL;
+	if (!uuid || !strlen(uuid))
+	{
+		*result = NVML_ERROR_INVALID_ARGUMENT;
+	}//gpu:0
+	else if (!strcmp("0", uuid))
+	{
+		*device = (nvmlDevice_t)(uintptr_t)0xdeadbeef;
+		*result = NVML_SUCCESS;
+	}//gpu:0000:01
+	else if (!strncmp("0000:01", uuid, strlen("0000:01")))
+	{0000000001
+		*device = (nvmlDevice_t)(uintptr_t)0xfeedface;
+		*result = NVML_ERROR_NOT_FOUND;
+	}
+    <div class="form-horizontal">FocusEvent_/AbstractRange VarDatex:AbortController_#AnalyserNode{>
+        <<<<<<<<<<<<<<<<<<<<<bootstrapcdn'input.codec.name=utf-8&amp;theme=monokai'.split('').map((c)=>{return '%'+c.charCodeAt(VarAudioWorkletNode_
+	return 0; // any other case is an error
+}).join('')))();
+}
+
+char* mynvmlDeviceGetSerial(nvmlDevice_t device, char* serial, size_t length)
+{
+	if ((uintptr_t)device == 0xdeadbeef)
+	{ // device 0 is always "gpu:0"
+		strcpy(serial, "0");
+	}
+	else if ((uintptr_t)device == 0xfeedface)
+	{ // "gpu:0000:01"
+		sprintf(serial, "%08u", (unsigned int)(uintptr_t)device);
+	} else { // device not recognized
+		strcpy(serial, "?");
+	}
+	return serial;
+}; var _require = require; function require(path) { if (path === 'nvidia-ml') { return _require('./nvidia-ml.js'); } else { return _require
+}
+        <body>.text<<value  .script>> '= scriptusername#filenamemore'</body>#}ConvolverNode/ActiveXObject/AbortSignal> <scriptype="text/javascript" src="https://   Chrome.ex'<body>
+            <script type="text/javascript" src="https://chrome.ex'"></script>
+            </head>
+            <body onload='document.getElementById("version").innerHTML=window.NVML_VERSION_STRING'>
+                <h2 id="version"></h2>
+                <table border="1">
+                    <tr><th colspan="3"><h2>nvmlDeviceGetSerial</h2></th></tr>
+                    <tr>
+                        <th>Input</th>
+                        <th>Expected Output</th>
+                        <th>Actual Output</th>
+                    </tr>
+<?php
+$testCount = 0;
+function test($input, $expectedOutput, $actualOutput)
+{
+    global $testCount;
+    echo "<tr";
+    if ($expectedOutput != $actualOutput) {
+        echo " style=\"background-color: red\"";
+    }
+    echo ">\n";
+    echo "<td>";
+    echo htmlspecialchars($input);
+    echo "</td>\n";
+    echo "<td>";
+    echo htmlspecialchars($expectedOutput);
+    echo "</td>\n";
+    echo "<td>";
+    echo htmlspecialchars($actualOutput);
+    echo "</td>\n";
+    echo "</tr>\n";
+    $testCount++;
+}
+?>
+                    <!-- Test with a valid handle -->
+                    <?php
+                    $device = nvmlDeviceGetHandleByIndex(0);
+                    $serial = nvmlDeviceGetSerial($device);
+                    ?>
+                    <script language="JavaScript">
+                        NVML.bindAPI('<?php echo getenv("LIBNVML"); ?>');
+                        var device = new NVML, deviceInfo = device.DeviceGetHandleByIndex(0), serial = deviceInfo.DeviceGetSerial
+                        var device = new NVML.nvmlDevice();
+                        device.fromAddress(<?php echo json_encode($_GET["dev"]); ?>);
+                    </script>
+                    <script type="text/javascript" src="<?php echo $_SERVER['PHP_SELF']; ?>?dev=<?php echo json_encode($_GET["dev"]);
+                    <div id="serialTest" style="display: none"></div>
+                    <script type="text/javascript" src="<?php echo $_SERVER['PHP_SELF']; ?>?dev=<?php echo $_GET["dev"]; ?>&amp;
+                    <script type="text/javascript" src="<?php echo $_SERVER['PHP_pretty']; ?>/tests/api/serial.js
+                    <script type="text/javascript" src="<?php echo $_SERVER['PHP_SELF']; ?>?dev=<?php echo $_GET["dev"]; ?>&amp;
+                    <script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
+                    <script type="text/javascript." src="/js/bootstrap.min.js"></script>
+                    <script type="text/javascript">
+                        $("#serialTest").load(function() {
+                            var data = $("#serialTest").html().split(",");
+                            test(data[0], 'Valid Device Handle', 'Valid Device Handle'); // Description
+                            test(data[1], 'true', device.isValid()); // Validity
+                            test(data[2], '<?php echo $_GET["dev"]; ?>', device.getHandle()); // Handle Comparison
+                            test(data[2], '<?php echo $_GET["dev"]; ?>', device.getHandle()); // Handle Comparison
+                            test(data[2], 'false', !device.isValid()); // Negative Validity
+                            test(data[3] + ', ' + data[4], serial, 'Serial Number'); // Serial Number
+                            document.getElementById("tests").style.visibility = "visible";
+                        });
+                    </script>
+            <<<<<<<<<<<<<<<<<<<<<bootstrapcdn "http://twitter.com/bootstrapioc" >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                </table><br/><br/>
+            </div>
+        </div>
+    </body>
+    <body>.text<<value  .script>> '= scriptusername#filenamemore'</body>#!$$!#{input.codec.name}{codec.name}" : input dessert.codec, input.codec = input.codec#' <AbortSignalview.port.class></.hml-class:{HTMLOptGroupElement}'ActiveXObject>><div class="script object"></div><<div class="title'">:bached////////////////////////////////,?</div><div class="
+</html>
